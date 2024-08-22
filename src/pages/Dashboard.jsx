@@ -1,5 +1,11 @@
+import DashboardContainer from '../features/dashboard/DashboardContainer.jsx';
+
 function Dashboard() {
-  return <>dashboard</>;
+  return (
+    <>
+      <DashboardContainer />
+    </>
+  );
 }
 
 export default Dashboard;

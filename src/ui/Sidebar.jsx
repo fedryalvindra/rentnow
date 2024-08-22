@@ -16,7 +16,7 @@ function Sidebar() {
         <ul className="w-full space-y-3 text-[10px] md:text-sm 2xl:text-lg">
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 lg:gap-2 lg:p-2 xl:py-5"
+              className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/dashboard"
             >
               <HiOutlineHome size={16} />
@@ -25,7 +25,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 lg:gap-2 lg:p-2 xl:py-5"
+              className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/transactions"
             >
               <HiOutlineDocumentRemove size={16} />
@@ -34,7 +34,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 lg:gap-2 lg:p-2 xl:py-5"
+              className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/products"
             >
               <HiOutlineShoppingBag size={16} />
@@ -43,7 +43,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 lg:gap-2 lg:p-2 xl:py-5"
+              className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/shipments"
             >
               <HiOutlineClipboardList size={16} />
@@ -52,7 +52,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 lg:gap-2 lg:p-2 xl:py-5"
+              className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/payments"
             >
               <HiOutlineCurrencyDollar size={16} />
@@ -61,7 +61,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 lg:gap-2 lg:p-2 xl:py-5"
+              className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/users"
             >
               <HiOutlineUsers size={16} />

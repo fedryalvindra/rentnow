@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
+import Button from '../../ui/Button.jsx';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -56,9 +57,7 @@ function LoginForm() {
             </label>
           </div>
         </div>
-        <button className="w-full bg-sky-400 text-white hover:bg-sky-500">
-          Login
-        </button>
+        <Button type="full">Login</Button>
       </form>
     </div>
   );
