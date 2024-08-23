@@ -10,7 +10,7 @@ function PaidItem({ items }) {
           <p className="xl:text-sm">{items.recipientName}</p>
           <p>
             {items.productName}
-            {items.productQuantity > 1 && `(${items.productQuantity}x)`}
+            {items.productQuantity > 1 && ` (${items.productQuantity}x)`}
           </p>
         </div>
         <div className="content-center">
@@ -19,11 +19,11 @@ function PaidItem({ items }) {
           </div>
         </div>
       </div>
-      <div className="flex justify-between text-[5px] text-white md:text-[7px] xl:text-sm">
-        <p className="w-full bg-gray-500 p-1 text-center">
+      <div className="flex justify-between text-[5px] text-white md:text-[7px] xl:text-xs">
+        <p className="w-full bg-gray-500 p-1 text-center xl:p-2">
           created at {items.transactionDate}
         </p>
-        <p className="w-full bg-sky-700 p-1 text-center">
+        <p className="w-full bg-sky-700 p-1 text-center xl:p-2">
           estimated delivered in {items.shipmentEstimatedArrived} days
         </p>
       </div>

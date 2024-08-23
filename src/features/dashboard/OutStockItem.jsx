@@ -2,7 +2,7 @@ import Button from '../../ui/Button.jsx';
 
 function OutStockItem({ items }) {
   return (
-    <li className="flex">
+    <li className="flex xl:p-2">
       <div className="flex w-full gap-1 xl:gap-4">
         <img
           className="w-8 xl:w-10"

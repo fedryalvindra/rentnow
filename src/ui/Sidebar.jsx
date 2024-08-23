@@ -19,7 +19,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/dashboard"
             >
-              <HiOutlineHome size={16} />
+              <HiOutlineHome className="md:text-md text-sm lg:text-lg xl:text-xl 2xl:text-2xl" />
               Dashboard
             </NavLink>
           </li>
@@ -28,7 +28,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/transactions"
             >
-              <HiOutlineDocumentRemove size={16} />
+              <HiOutlineDocumentRemove className="md:text-md text-sm lg:text-lg xl:text-xl 2xl:text-2xl" />
               Transactions
             </NavLink>
           </li>
@@ -37,7 +37,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/products"
             >
-              <HiOutlineShoppingBag size={16} />
+              <HiOutlineShoppingBag className="md:text-md text-sm lg:text-lg xl:text-xl 2xl:text-2xl" />
               Products
             </NavLink>
           </li>
@@ -46,7 +46,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/shipments"
             >
-              <HiOutlineClipboardList size={16} />
+              <HiOutlineClipboardList className="md:text-md text-sm lg:text-lg xl:text-xl 2xl:text-2xl" />
               Shipments
             </NavLink>
           </li>
@@ -55,7 +55,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/payments"
             >
-              <HiOutlineCurrencyDollar size={16} />
+              <HiOutlineCurrencyDollar className="md:text-md text-sm lg:text-lg xl:text-xl 2xl:text-2xl" />
               Payments
             </NavLink>
           </li>
@@ -64,7 +64,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 hover:bg-gray-200 lg:gap-2 lg:p-2 xl:py-5"
               to="/users"
             >
-              <HiOutlineUsers size={16} />
+              <HiOutlineUsers className="md:text-md text-sm lg:text-lg xl:text-xl 2xl:text-2xl" />
               Users
             </NavLink>
           </li>

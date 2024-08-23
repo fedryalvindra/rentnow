@@ -1,5 +1,11 @@
+import TransactionsContainer from '../features/transactions/TransactionsContainer.jsx';
+
 function Transactions() {
-  return <>transactions</>;
+  return (
+    <>
+      <TransactionsContainer />
+    </>
+  );
 }
 
 export default Transactions;
