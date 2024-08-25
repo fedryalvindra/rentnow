@@ -87,25 +87,16 @@ const tempData = [
     id: 10,
     recipientName: 'Fedry Alvindra',
     email: 'fedryalvindra@gmail.com',
-    transactionDate: '01-12-2024',
+    transactionDate: '30-12-2024',
     shipmentEstimatedArrived: 2,
     status: 'paid',
-    totalPrice: 1200000,
-  },
-  {
-    id: 10,
-    recipientName: 'Fedry Alvindra',
-    email: 'fedryalvindra@gmail.com',
-    transactionDate: '01-12-2024',
-    shipmentEstimatedArrived: 2,
-    status: 'sent',
     totalPrice: 1200000,
   },
 ];
 
 function TransactionsTable() {
   return (
-    <Table columns="1fr_1fr_1fr_1fr">
+    <Table columns="1fr 1fr 1fr 1fr">
       <Table.Header>
         <Table.Row>Customer</Table.Row>
         <Table.Row>Date</Table.Row>

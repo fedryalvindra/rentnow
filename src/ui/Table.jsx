@@ -5,7 +5,7 @@ const TableContext = createContext();
 function Table({ columns, children }) {
   return (
     <TableContext.Provider value={{ columns }}>
-      <div className="text-[10px]">{children}</div>
+      <div className="overflow-hidden rounded-xl text-[10px]">{children}</div>
     </TableContext.Provider>
   );
 }
@@ -14,7 +14,8 @@ function Header({ children }) {
   const { columns } = useContext(TableContext);
   return (
     <div
-      className={`grid grid-cols-[${columns}] bg-gray-200 p-1 sm:text-[10px] md:p-3 md:text-xs lg:text-sm`}
+      style={{ gridTemplateColumns: columns }}
+      className={`grid bg-gray-200 p-1 sm:text-[10px] md:p-3 md:text-xs lg:text-sm`}
     >
       {children}
     </div>
@@ -30,15 +31,16 @@ function Col({ children }) {
 
   return (
     <div
-      className={`grid grid-cols-[${columns}] p-2 text-[8px] sm:text-[10px] md:text-xs lg:text-sm`}
+      style={{ gridTemplateColumns: columns }}
+      className={`grid cursor-pointer p-2 text-[8px] transition-all duration-300 ease-in-out hover:bg-gray-100 sm:text-[10px] md:text-xs lg:text-sm`}
     >
       {children}
     </div>
   );
 }
 
-function Row({ children }) {
-  return <div className="text-center">{children}</div>;
+function Row({ children, position = 'text-center' }) {
+  return <div className={position}>{children}</div>;
 }
 
 Table.Header = Header;

@@ -21,7 +21,7 @@ function TransactionsRows({ transaction }) {
       </div>
       <div className="flex items-center justify-center">
         <h1
-          className={`rounded-md ${statusColor[transaction.status]} p-1 sm:px-2 md:px-4 md:rounded-lg lg:px-6 lg:rounded-full`}
+          className={`rounded-md ${statusColor[transaction.status]} p-1 sm:px-2 md:rounded-full md:px-4 lg:px-6`}
         >
           {transaction.status}
         </h1>

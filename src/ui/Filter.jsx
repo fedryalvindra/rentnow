@@ -34,7 +34,7 @@ function Items({ items, filterField }) {
   };
 
   return (
-    <div className="space-x-1 bg-white text-[8px] md:text-xs xl:p-1">
+    <div className="content-center space-x-1 bg-white text-[6px] md:text-[10px] xl:p-1">
       {items.map((item) => (
         <Button
           isFilter={filter === item}
