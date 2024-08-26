@@ -16,8 +16,12 @@ function DashboardContainer() {
           </div>
         </div>
         <div className="grid grid-cols-[1fr_10rem] space-x-3 sm:grid-cols-[1fr_13rem] md:grid-cols-[1fr_16rem] xl:grid-cols-[1fr_24rem] 2xl:grid-cols-[1fr_30rem]">
-          <div className="bg-white"></div>
-          <div className="bg-white"></div>
+          <div className="bg-white">
+            <h1 className="text-xs xl:text-lg">Sales</h1>
+          </div>
+          <div className="bg-white">
+            <h1 className="text-xs xl:text-lg">Sales</h1>
+          </div>
         </div>
       </div>
     </section>

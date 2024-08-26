@@ -1,10 +1,12 @@
 import Buttons from '../../ui/Buttons.jsx';
 import DeleteButton from '../../ui/DeleteButton.jsx';
 import EditButton from '../../ui/EditButton.jsx';
+import Modal, { useModalContext } from '../../ui/DeleteModal.jsx';
 import Table from '../../ui/Table.jsx';
 
 function ProductRow({
   item: {
+    id,
     productName,
     productImageURL,
     stock,
@@ -13,6 +15,7 @@ function ProductRow({
     Category: { categoryName },
   },
 }) {
+  const { setTitle, setIsOpen, setContent, setId, setType } = useModalContext();
   return (
     <Table.Col>
       <div className="flex items-center justify-between">
@@ -32,7 +35,15 @@ function ProductRow({
         {discount > 0 ? `Rp. ${discount}` : '-'}
       </div>
       <Buttons>
-        <DeleteButton />
+        <DeleteButton
+          onClick={() => {
+            setTitle('Delete');
+            setContent(`Are you sure want to delete ${productName}?`);
+            setIsOpen(true);
+            setId(id);
+            setType('product');
+          }}
+        />
         <EditButton />
       </Buttons>
     </Table.Col>

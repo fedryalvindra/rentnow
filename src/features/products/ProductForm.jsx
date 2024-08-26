@@ -6,10 +6,11 @@ import PageSpinner from '../../ui/PageSpinner.jsx';
 import { useCategory } from './useCategory.js';
 import { useCreateProduct } from './useCreateProduct.js';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 function ProductForm() {
   const { data: categories, isLoading: isLoadingCategories } = useCategory();
-  const { register, handleSubmit, formState, getValues } = useForm();
+  const { register, handleSubmit, formState, getValues, reset } = useForm();
   const { errors } = formState;
 
   const navigate = useNavigate();
@@ -149,7 +150,11 @@ function ProductForm() {
         </InputLayout>
 
         <Buttons position="text-end">
-          <button className="border border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base">
+          <button
+            className="border border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
+            type="reset"
+            onClick={() => reset()}
+          >
             Back
           </button>
           <button className="bg-sky-400 p-1 px-2 text-xs text-white md:text-sm xl:text-base">

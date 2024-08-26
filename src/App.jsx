@@ -12,6 +12,7 @@ import Shipments from './pages/Shipments.jsx';
 import Payments from './pages/Payments.jsx';
 import Users from './pages/Users.jsx';
 import ProductForm from './features/products/ProductForm.jsx';
+import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,6 +42,29 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          className: '',
+          duration: 5000,
+          style: {
+            background: '#ffffff',
+            color: '#000000',
+          },
+
+          success: {
+            duration: 3000,
+            theme: {
+              primary: 'green',
+              secondary: 'black',
+            },
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }
