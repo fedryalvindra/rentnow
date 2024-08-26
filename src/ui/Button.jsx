@@ -7,7 +7,7 @@ function Button({ type, children, onClick, isFilter }) {
 
   if (type === 'add') width = 'md:px-3';
 
-  if (type == 'filter')
+  if (type === 'filter')
     return (
       <button
         onClick={onClick}
@@ -20,6 +20,7 @@ function Button({ type, children, onClick, isFilter }) {
   return (
     <button
       className={`bg-sky-400 text-white hover:bg-sky-500 ${width} p-1 text-[10px] md:text-xs xl:text-sm`}
+      onClick={onClick}
     >
       {children}
     </button>

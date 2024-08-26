@@ -5,7 +5,9 @@ const TableContext = createContext();
 function Table({ columns, children }) {
   return (
     <TableContext.Provider value={{ columns }}>
-      <div className="overflow-hidden rounded-xl text-[10px]">{children}</div>
+      <div className="overflow-hidden rounded-xl border border-gray-300 text-[10px]">
+        {children}
+      </div>
     </TableContext.Provider>
   );
 }
@@ -22,7 +24,14 @@ function Header({ children }) {
   );
 }
 
-function Body({ children }) {
+function Body({ children, type = 'none' }) {
+  if (type === 'categories')
+    return (
+      <div className="h-20 overflow-scroll bg-white no-scrollbar sm:h-24 md:h-28 lg:h-32 xl:h-[7.5rem]">
+        {children}
+      </div>
+    );
+
   return <div className="bg-white">{children}</div>;
 }
 
@@ -32,7 +41,7 @@ function Col({ children }) {
   return (
     <div
       style={{ gridTemplateColumns: columns }}
-      className={`grid cursor-pointer p-2 text-[8px] transition-all duration-300 ease-in-out hover:bg-gray-100 sm:text-[10px] md:text-xs lg:text-sm`}
+      className={`grid cursor-pointer border-b p-2 text-[8px] transition-all duration-300 ease-in-out hover:bg-gray-100 sm:text-[10px] md:text-xs lg:text-sm`}
     >
       {children}
     </div>

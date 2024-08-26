@@ -10,13 +10,13 @@ function LoginForm() {
 
   const passwordType = isHide ? 'password' : 'text';
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="flex flex-col items-center gap-5 lg:gap-14">
       <img src="Logo.png" alt="logo" />
-      <form className="flex w-60 flex-col items-center gap-5 border border-sky-100 bg-white p-4">
-        <h1 className="text-lg">Login</h1>
-        <div className="flex w-full flex-col gap-1">
+      <form className="flex w-60 flex-col items-center gap-5 border border-sky-100 bg-white p-4 lg:w-80 lg:gap-10">
+        <h1 className="text-lg lg:text-2xl">Login</h1>
+        <div className="flex w-full flex-col gap-2">
           <input
-            className="w-full border-b border-gray-700 text-sm focus:outline-none"
+            className="w-full border-b border-gray-700 text-sm focus:outline-none lg:text-base"
             autoComplete="username"
             placeholder="Email"
             value={email}
@@ -24,7 +24,7 @@ function LoginForm() {
           />
           <div className="flex items-center justify-between border-b border-gray-700">
             <input
-              className="w-full= text-sm focus:outline-none"
+              className="w-full= text-sm focus:outline-none lg:text-base"
               autoComplete="current-password"
               placeholder="Password"
               type={passwordType}
@@ -52,7 +52,10 @@ function LoginForm() {
               checked={isRemember}
               onChange={(e) => setIsRemember(e.target.checked)}
             />
-            <label className="text-xs" htmlFor="remember">
+            <label
+              className="content-center text-xs lg:text-sm"
+              htmlFor="remember"
+            >
               Remember me
             </label>
           </div>

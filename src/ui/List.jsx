@@ -20,7 +20,7 @@ function Title({ children }) {
   const total = listData.length;
 
   return (
-    <div className="flex items-center justify-between text-xs xl:text-xl">
+    <div className="flex items-center justify-between text-xs xl:text-lg">
       <h2>{children}</h2>
       <p>Total {total}</p>
     </div>
@@ -32,7 +32,7 @@ function Items({ listType }) {
 
   if (listType === 'paid')
     return (
-      <ul className="no-scrollbar h-[14rem] overflow-scroll border border-gray-200 text-[7px] md:text-xs xl:h-[22rem] xl:text-sm 2xl:text-lg">
+      <ul className="h-[14rem] overflow-scroll border-t border-gray-200 text-[7px] no-scrollbar md:text-xs xl:h-[16rem] xl:text-sm">
         {listData.map((items) => (
           <PaidItem key={items.id} items={items} />
         ))}
@@ -41,7 +41,7 @@ function Items({ listType }) {
 
   if (listType === 'sent')
     return (
-      <ul className="no-scrollbar h-[5.5rem] space-y-2 overflow-scroll border border-gray-200 text-[6px] md:h-[6rem] md:text-[8px] xl:h-[8rem] xl:text-sm 2xl:h-[9.5rem]">
+      <ul className="h-[5.5rem] space-y-2 overflow-scroll border-t border-gray-200 text-[6px] no-scrollbar md:h-[6rem] md:text-[8px] xl:text-xs 2xl:h-[7rem]">
         {listData.map((items) => (
           <SentItem key={items.id} items={items} />
         ))}
@@ -50,7 +50,7 @@ function Items({ listType }) {
 
   if (listType === 'outstock')
     return (
-      <ul className="no-scrollbar h-[5rem] space-y-1 overflow-scroll border border-gray-200 text-[6px] md:h-[6rem] md:text-xs xl:h-32 xl:text-lg 2xl:h-[8rem]">
+      <ul className="h-[5rem] space-y-1 overflow-scroll border-t border-gray-200 text-[6px] no-scrollbar md:h-[6rem] md:text-xs xl:h-32 xl:text-sm 2xl:h-[6rem]">
         {listData.map((items) => (
           <OutStockItem key={items.id} items={items} />
         ))}

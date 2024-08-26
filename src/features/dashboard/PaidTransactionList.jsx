@@ -50,7 +50,9 @@ const tempData = [
 function PaidTransactionList() {
   return (
     <List listData={tempData}>
-      <List.Title>Paid Trainsactions</List.Title>
+      <div className='xl:p-2 2xl:py-4'>
+        <List.Title>Paid Trainsactions</List.Title>
+      </div>
       <List.Items listType="paid" />
     </List>
   );

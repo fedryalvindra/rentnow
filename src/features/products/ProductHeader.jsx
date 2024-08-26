@@ -4,8 +4,11 @@ import Filter from '../../ui/Filter.jsx';
 import Heading from '../../ui/Heading.jsx';
 import Search from '../../ui/Search.jsx';
 import Sortby from '../../ui/Sortby.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function ProductHeader() {
+  const navigate = useNavigate()
+
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
@@ -20,7 +23,7 @@ function ProductHeader() {
           />
         </Filter>
         <Sortby />
-        <Button type="add">
+        <Button type="add" onClick={() => navigate("/product-form")}>
           <span className="flex items-center gap-1">
             Add Product <HiOutlinePlus />
           </span>
