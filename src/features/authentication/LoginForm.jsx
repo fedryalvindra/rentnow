@@ -12,7 +12,7 @@ function LoginForm() {
   return (
     <div className="flex flex-col items-center gap-5 lg:gap-14">
       <img src="Logo.png" alt="logo" />
-      <form className="flex w-60 flex-col items-center gap-5 border border-sky-100 bg-white p-4 lg:w-80 lg:gap-10">
+      <form className="flex w-60 flex-col items-center gap-5 border border-gray-100 bg-white p-4 lg:w-80 lg:gap-10">
         <h1 className="text-lg lg:text-2xl">Login</h1>
         <div className="flex w-full flex-col gap-2">
           <input
@@ -60,7 +60,9 @@ function LoginForm() {
             </label>
           </div>
         </div>
-        <Button type="full">Login</Button>
+        <Button type="full">
+          Login
+        </Button>
       </form>
     </div>
   );

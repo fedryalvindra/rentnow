@@ -14,6 +14,8 @@ import Users from './pages/Users.jsx';
 import ProductForm from './features/products/ProductForm.jsx';
 import { Toaster } from 'react-hot-toast';
 import EditProductForm from './features/products/EditProductForm.jsx';
+import ProductCategoriesContainer from './features/categories/ProductCategoriesContainer.jsx';
+import ProductsContainer from './features/products/ProductsContainer.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,9 +35,15 @@ function App() {
             <Route index element={<Navigate to="/dashboard" />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/transactions" element={<Transactions />} />
-            <Route path="/products" element={<Products />} />
+            <Route path="/products" element={<Products />}>
+              <Route index element={<ProductsContainer />} />
+              <Route
+                path="categories"
+                element={<ProductCategoriesContainer />}
+              />
+              <Route path="product-form" element={<ProductForm />} />
+            </Route>
             <Route path="/products/:productID" element={<EditProductForm />} />
-            <Route path="/product-form" element={<ProductForm />} />
             <Route path="/shipments" element={<Shipments />} />
             <Route path="/payments" element={<Payments />} />
             <Route path="/users" element={<Users />} />

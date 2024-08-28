@@ -1,6 +1,6 @@
 import BackButton from '../../ui/BackButton.jsx';
 import InputLayout from '../../ui/InputLayout.jsx';
-import { useCategory } from './useCategory.js';
+import { useCategory } from '../categories/useCategory.js';
 
 import PageSpinner from '../../ui/PageSpinner.jsx';
 import { useProduct } from './useProduct.js';
@@ -67,7 +67,7 @@ function EditProductForm() {
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="overflow-hidden sm:rounded-sm md:rounded-md">
-          <h1 className="hidden bg-sky-400 p-2 pl-4 text-xs text-white sm:block lg:text-sm xl:text-base">
+          <h1 className="hidden bg-indigo-600 p-2 pl-4 text-xs text-white sm:block lg:text-sm xl:text-base">
             Update Product
           </h1>
           <div className="space-y-1 p-1 sm:grid sm:grid-cols-[1fr_11rem] sm:space-y-0 sm:bg-white md:grid-cols-[1fr_12rem] lg:grid-cols-[1fr_14rem] xl:grid-cols-[1fr_16rem] 2xl:grid-cols-[1fr_18rem]">
@@ -88,7 +88,7 @@ function EditProductForm() {
               <InputLayout error={errors?.categoryID?.message}>
                 <label htmlFor="categoryID">Category</label>
                 <select
-                  className="w-20 bg-gray-200 p-1 lg:w-32"
+                  className="w-20 bg-indigo-500 p-1 text-white focus:ring-0 lg:w-32"
                   id="categoryID"
                   defaultValue={categoryID}
                   {...register('categoryID', {
@@ -96,7 +96,11 @@ function EditProductForm() {
                   })}
                 >
                   {categories?.map((category) => (
-                    <option value={category.id} key={category.id}>
+                    <option
+                      className="bg-white text-gray-700"
+                      value={category.id}
+                      key={category.id}
+                    >
                       {category.categoryName}
                     </option>
                   ))}
@@ -176,7 +180,7 @@ function EditProductForm() {
                 <label htmlFor="productImageURL">Update Image</label>
                 <input
                   type="file"
-                  className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-sky-500 file:p-1 file:px-3 file:text-white file:focus:outline-none sm:rounded-md"
+                  className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-indigo-500 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-indigo-600 file:focus:outline-none sm:rounded-md"
                   id="productImageURL"
                   autoComplete="off"
                   {...register('productImageURL')}
@@ -203,7 +207,7 @@ function EditProductForm() {
           >
             Back
           </button>
-          <button className="bg-sky-400 p-1 px-2 text-xs text-white md:text-sm xl:text-base">
+          <button className="bg-indigo-500 p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base">
             Update
           </button>
         </Buttons>

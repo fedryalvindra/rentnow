@@ -3,7 +3,7 @@ import BackButton from '../../ui/BackButton.jsx';
 import Buttons from '../../ui/Buttons.jsx';
 import InputLayout from '../../ui/InputLayout.jsx';
 import PageSpinner from '../../ui/PageSpinner.jsx';
-import { useCategory } from './useCategory.js';
+import { useCategory } from '../categories/useCategory.js';
 import { useCreateProduct } from './useCreateProduct.js';
 import { useNavigate } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ function ProductForm() {
       <BackButton />
 
       <div className="overflow-hidden sm:rounded-lg sm:border">
-        <h1 className="hidden sm:block sm:bg-sky-400 sm:p-2 sm:pl-4 sm:text-sm sm:text-white md:text-base lg:pl-6 lg:text-lg">
+        <h1 className="hidden font-semibold sm:block sm:bg-indigo-600 sm:p-2 sm:pl-4 sm:text-sm sm:text-white md:text-base lg:pl-6 lg:text-lg">
           Create Product
         </h1>
         <form
@@ -56,14 +56,14 @@ function ProductForm() {
           <InputLayout error={errors?.categoryID?.message}>
             <label htmlFor="categoryID">Category</label>
             <select
-              className="w-20 bg-gray-200 p-1 lg:w-32"
+              className="w-20 bg-indigo-500 text-white p-1 lg:w-32 focus:ring-0"
               id="categoryID"
               {...register('categoryID', {
                 required: 'This field is required',
               })}
             >
               {categories?.map((category) => (
-                <option value={category.id} key={category.id}>
+                <option className='bg-white text-gray-700' value={category.id} key={category.id}>
                   {category.categoryName}
                 </option>
               ))}
@@ -141,7 +141,7 @@ function ProductForm() {
             <label htmlFor="productImageURL">Image</label>
             <input
               type="file"
-              className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-sky-500 file:p-1 file:px-3 file:text-white file:focus:outline-none sm:rounded-md"
+              className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-indigo-500 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-indigo-600 file:focus:outline-none sm:rounded-md"
               id="productImageURL"
               autoComplete="off"
               {...register('productImageURL', {
@@ -159,7 +159,7 @@ function ProductForm() {
             >
               Back
             </button>
-            <button className="bg-sky-400 p-1 px-2 text-xs text-white md:text-sm xl:text-base">
+            <button className="bg-indigo-500 p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base">
               Confirm
             </button>
           </Buttons>

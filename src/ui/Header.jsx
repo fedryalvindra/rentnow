@@ -3,7 +3,7 @@ import { HiOutlineLogout, HiOutlineMoon, HiOutlineUser } from 'react-icons/hi';
 
 function Header({ setIsSidebar }) {
   return (
-    <header className="flex w-full items-center justify-between border-b border-sky-100 bg-white p-2">
+    <header className="flex w-full items-center justify-between border-b border-gray-100 bg-white p-2">
       <GiHamburgerMenu
         className="sm:hidden"
         onClick={() => setIsSidebar((sidebar) => !sidebar)}

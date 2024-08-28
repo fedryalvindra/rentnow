@@ -27,12 +27,14 @@ function ProductRow({
           alt={productName}
         />
       </div>
-      <div className="content-center text-center">{productName}</div>
+      <div className="content-center text-center font-semibold">
+        {productName}
+      </div>
       <div className="content-center text-center">{categoryName}</div>
       <div className="content-center text-center">{stock}</div>
       <div className="content-center text-center"> Rp. {productPrice}</div>
       <div
-        className={`content-center text-center ${discount > 0 && 'text-green-400'}`}
+        className={`content-center text-center ${discount > 0 && 'font-semibold text-green-400'}`}
       >
         {discount > 0 ? `Rp. ${discount}` : '-'}
       </div>

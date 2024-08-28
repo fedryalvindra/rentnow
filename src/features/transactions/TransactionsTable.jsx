@@ -98,10 +98,10 @@ function TransactionsTable() {
   return (
     <Table columns="1fr 1fr 1fr 1fr">
       <Table.Header>
-        <Table.Row>Customer</Table.Row>
-        <Table.Row>Date</Table.Row>
-        <Table.Row>Status</Table.Row>
-        <Table.Row>Amount</Table.Row>
+        <Table.Row>CUSTOMER</Table.Row>
+        <Table.Row>DATE</Table.Row>
+        <Table.Row>STATUS</Table.Row>
+        <Table.Row>AMOUNT</Table.Row>
       </Table.Header>
       <Table.Body>
         {tempData.map((transaction) => (

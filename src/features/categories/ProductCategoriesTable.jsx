@@ -8,7 +8,7 @@ function ProductCategoriesTable({ categories }) {
         <Table.Row position="">Category</Table.Row>
         <Table.Row></Table.Row>
       </Table.Header>
-      <Table.Body type="categories">
+      <Table.Body>
         {categories?.map((item) => (
           <ProductCategoriesRow item={item} key={item.id} />
         ))}

@@ -71,7 +71,7 @@ function Content() {
 
 function Body({ children }) {
   return (
-    <div className="w-80 max-w-lg rounded-lg bg-white p-6 shadow-lg xl:w-96">
+    <div className="w-80 max-w-lg rounded-lg bg-white p-6 shadow-lg transition-all duration-200 ease-out xl:w-96">
       {children}
     </div>
   );

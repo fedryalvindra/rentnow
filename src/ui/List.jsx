@@ -8,7 +8,7 @@ const ListContext = createContext();
 function List({ listData, children }) {
   return (
     <ListContext.Provider value={{ listData }}>
-      <section className="h-full space-y-2 border border-sky-100 bg-white p-2 2xl:space-y-3 2xl:p-4">
+      <section className="h-full space-y-2 overflow-hidden rounded-sm border border-slate-100 bg-white p-2 shadow-sm 2xl:space-y-3 2xl:p-4 md:rounded-md">
         {children}
       </section>
     </ListContext.Provider>
@@ -20,7 +20,7 @@ function Title({ children }) {
   const total = listData.length;
 
   return (
-    <div className="flex items-center justify-between text-xs xl:text-lg">
+    <div className="flex items-center justify-between text-xs font-semibold xl:text-base">
       <h2>{children}</h2>
       <p>Total {total}</p>
     </div>

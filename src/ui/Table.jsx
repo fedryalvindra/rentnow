@@ -17,21 +17,14 @@ function Header({ children }) {
   return (
     <div
       style={{ gridTemplateColumns: columns }}
-      className={`grid bg-gray-200 p-1 sm:text-[10px] md:p-3 md:text-xs lg:text-sm`}
+      className={`grid bg-gray-100 p-1 sm:text-[10px] md:p-3 md:text-xs lg:text-sm`}
     >
       {children}
     </div>
   );
 }
 
-function Body({ children, type = 'none' }) {
-  if (type === 'categories')
-    return (
-      <div className="h-20 overflow-scroll bg-white no-scrollbar sm:h-24 md:h-28 lg:h-32 xl:h-[7.5rem]">
-        {children}
-      </div>
-    );
-
+function Body({ children }) {
   return <div className="bg-white">{children}</div>;
 }
 
@@ -49,7 +42,7 @@ function Col({ children }) {
 }
 
 function Row({ children, position = 'text-center' }) {
-  return <div className={position}>{children}</div>;
+  return <div className={`${position} font-semibold`}>{children}</div>;
 }
 
 Table.Header = Header;

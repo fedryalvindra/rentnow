@@ -23,7 +23,7 @@ function ProductHeader() {
           />
         </Filter>
         <Sortby />
-        <Button type="add" onClick={() => navigate("/product-form")}>
+        <Button type="add" onClick={() => navigate("product-form")}>
           <span className="flex items-center gap-1">
             Add Product <HiOutlinePlus />
           </span>

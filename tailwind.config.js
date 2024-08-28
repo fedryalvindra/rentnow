@@ -5,7 +5,12 @@ export default {
     fontFamily: {
       sans: 'Poppins, sans-serif',
     },
-    extend: {},
+    
+    extend: {
+      letterSpacing: {
+        wide: "0.02em"
+      }
+    },
   },
   plugins: [
     function ({ addUtilities }) {

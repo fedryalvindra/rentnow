@@ -1,7 +1,7 @@
-import ProductsContainer from '../features/products/ProductsContainer.jsx';
+import { Outlet } from 'react-router-dom';
 
 function Products() {
-  return <ProductsContainer />;
+  return <Outlet />;
 }
 
 export default Products;
