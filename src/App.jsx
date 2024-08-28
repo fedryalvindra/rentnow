@@ -13,6 +13,7 @@ import Payments from './pages/Payments.jsx';
 import Users from './pages/Users.jsx';
 import ProductForm from './features/products/ProductForm.jsx';
 import { Toaster } from 'react-hot-toast';
+import EditProductForm from './features/products/EditProductForm.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/products/:productID" element={<EditProductForm />} />
             <Route path="/product-form" element={<ProductForm />} />
             <Route path="/shipments" element={<Shipments />} />
             <Route path="/payments" element={<Payments />} />

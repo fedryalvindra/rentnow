@@ -1,6 +1,6 @@
 function PaidItem({ items }) {
   return (
-    <li className="w-full cursor-pointer border-b p-1 transition-all duration-300 ease-in-out hover:bg-gray-100 2xl:p-2">
+    <li className="w-full cursor-pointer space-y-2 border-b p-1 transition-all duration-300 ease-in-out hover:bg-gray-100 2xl:p-2">
       <div className="grid grid-cols-[4rem_1fr_2.5rem] space-x-1 md:grid-cols-[3rem_1fr_4rem] xl:grid-cols-[5rem_1fr_6rem]">
         <img
           className="h-10 w-full content-center bg-white object-scale-down"
@@ -20,7 +20,7 @@ function PaidItem({ items }) {
         </div>
       </div>
       <div className="flex justify-between text-[5px] text-white md:text-[7px] xl:text-xs">
-        <p className="w-full bg-gray-500 p-1 text-center">
+        <p className="w-full bg-gray-400 p-1 text-center">
           created at {items.transactionDate}
         </p>
         <p className="w-full bg-sky-400 p-1 text-center">

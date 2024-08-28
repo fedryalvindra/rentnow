@@ -1,8 +1,9 @@
 import Buttons from '../../ui/Buttons.jsx';
 import DeleteButton from '../../ui/DeleteButton.jsx';
 import EditButton from '../../ui/EditButton.jsx';
-import Modal, { useModalContext } from '../../ui/DeleteModal.jsx';
+import { useModalContext } from '../../ui/DeleteModal.jsx';
 import Table from '../../ui/Table.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function ProductRow({
   item: {
@@ -15,7 +16,8 @@ function ProductRow({
     Category: { categoryName },
   },
 }) {
-  const { setTitle, setIsOpen, setContent, setId, setType } = useModalContext();
+  const navigate = useNavigate();
+  const { dispatch } = useModalContext();
   return (
     <Table.Col>
       <div className="flex items-center justify-between">
@@ -37,14 +39,18 @@ function ProductRow({
       <Buttons>
         <DeleteButton
           onClick={() => {
-            setTitle('Delete');
-            setContent(`Are you sure want to delete ${productName}?`);
-            setIsOpen(true);
-            setId(id);
-            setType('product');
+            dispatch({
+              type: 'admin/openModal',
+              payload: {
+                title: 'Delete',
+                content: `Are you sure want to delete ${productName}?`,
+                id: id,
+                type: 'product',
+              },
+            });
           }}
         />
-        <EditButton />
+        <EditButton onClick={() => navigate(`${id}`)} />
       </Buttons>
     </Table.Col>
   );

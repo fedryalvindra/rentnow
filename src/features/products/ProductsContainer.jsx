@@ -8,6 +8,7 @@ import PageSpinner from '../../ui/PageSpinner.jsx';
 import { useCategory } from './useCategory.js';
 import DeleteModal from '../../ui/DeleteModal.jsx';
 import { useDeleteProduct } from './useDeleteProduct.js';
+import Empty from '../../ui/Empty.jsx';
 
 function ProductsContainer() {
   const { data: products, isLoading: isLoadingProducts } = useQuery({
@@ -31,7 +32,11 @@ function ProductsContainer() {
           </div>
           <div className="space-y-1">
             <ProductHeader />
-            <ProductTable products={products} />
+            {products.length ? (
+              <ProductTable products={products} />
+            ) : (
+              <Empty data="product" />
+            )}
           </div>
         </div>
       </section>

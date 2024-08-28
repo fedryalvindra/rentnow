@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 .active {
-  background-color: #e5e7eb;
-  color: #0c4a6e;
+  background-color: #f3f4f6;
+  color: #1e293b;
+  transition: all;
+  animation-duration: 0.3;
 }
