@@ -67,30 +67,37 @@ function EditProductForm() {
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="overflow-hidden sm:rounded-sm md:rounded-md">
-          <h1 className="hidden bg-indigo-600 p-2 pl-4 text-xs text-white sm:block lg:text-sm xl:text-base">
-            Update Product
-          </h1>
-          <div className="space-y-1 p-1 sm:grid sm:grid-cols-[1fr_11rem] sm:space-y-0 sm:bg-white md:grid-cols-[1fr_12rem] lg:grid-cols-[1fr_14rem] xl:grid-cols-[1fr_16rem] 2xl:grid-cols-[1fr_18rem]">
-            <div className="space-y-2 sm:p-3">
+          <div className="space-y-1 p-1 sm:grid sm:grid-cols-[1fr_11rem] sm:space-y-0 sm:rounded-md sm:border sm:bg-white md:grid-cols-[1fr_12rem] lg:p-2 xl:p-5 lg:grid-cols-[1fr_14rem] xl:grid-cols-[1fr_16rem] 2xl:grid-cols-[1fr_18rem]">
+            <div className="space-y-2 sm:p-3 md:space-y-4 lg:space-y-5 xl:space-y-6">
               <InputLayout error={errors?.productName?.message}>
-                <label htmlFor="productName">Product Name</label>
+                <label className="font-semibold" htmlFor="productName">
+                  Product Name
+                </label>
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   type="text"
                   id="productName"
                   autoComplete="off"
                   defaultValue={productName}
+                  disabled={
+                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                  }
                   {...register('productName', {
                     required: 'This field is required',
                   })}
                 />
               </InputLayout>
               <InputLayout error={errors?.categoryID?.message}>
-                <label htmlFor="categoryID">Category</label>
+                <label className="font-semibold" htmlFor="categoryID">
+                  Category
+                </label>
                 <select
-                  className="w-20 bg-indigo-500 p-1 text-white focus:ring-0 lg:w-32"
+                  className="w-20 rounded-sm bg-gray-400 p-1 text-white transition-all duration-200 hover:bg-gray-500 focus:ring-0 sm:rounded-md sm:p-2 lg:w-32"
                   id="categoryID"
                   defaultValue={categoryID}
+                  disabled={
+                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                  }
                   {...register('categoryID', {
                     required: 'This field is required',
                   })}
@@ -107,13 +114,18 @@ function EditProductForm() {
                 </select>
               </InputLayout>
               <InputLayout error={errors?.productPrice?.message}>
-                <label htmlFor="productPrice">Price</label>
+                <label className="font-semibold" htmlFor="productPrice">
+                  Price
+                </label>
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   type="text"
                   id="productPrice"
                   autoComplete="off"
                   defaultValue={productPrice}
+                  disabled={
+                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                  }
                   {...register('productPrice', {
                     required: 'This field is required',
                     min: {
@@ -125,13 +137,18 @@ function EditProductForm() {
               </InputLayout>
 
               <InputLayout error={errors?.discount?.message}>
-                <label htmlFor="discount">Discount</label>
+                <label className="font-semibold" htmlFor="discount">
+                  Discount
+                </label>
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   type="text"
                   id="discount"
                   autoComplete="off"
                   defaultValue={discount}
+                  disabled={
+                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                  }
                   {...register('discount', {
                     required: 'This field is required',
                     min: {
@@ -146,13 +163,18 @@ function EditProductForm() {
               </InputLayout>
 
               <InputLayout error={errors?.stock?.message}>
-                <label htmlFor="stock">Stock</label>
+                <label className="font-semibold" htmlFor="stock">
+                  Stock
+                </label>
                 <input
                   type="text"
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   id="stock"
                   autoComplete="off"
                   defaultValue={stock}
+                  disabled={
+                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                  }
                   {...register('stock', {
                     required: 'This field is required',
                     min: {
@@ -164,12 +186,17 @@ function EditProductForm() {
               </InputLayout>
 
               <InputLayout error={errors?.description?.message}>
-                <label htmlFor="description">Description</label>
+                <label className="font-semibold" htmlFor="description">
+                  Description
+                </label>
                 <textarea
                   className="h-48 w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   id="description"
                   autoComplete="off"
                   defaultValue={description}
+                  disabled={
+                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                  }
                   {...register('description', {
                     required: 'This field is required',
                   })}
@@ -177,12 +204,17 @@ function EditProductForm() {
               </InputLayout>
 
               <InputLayout>
-                <label htmlFor="productImageURL">Update Image</label>
+                <label className="font-semibold" htmlFor="productImageURL">
+                  Update Image
+                </label>
                 <input
                   type="file"
-                  className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-indigo-500 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-indigo-600 file:focus:outline-none sm:rounded-md"
+                  className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-gray-400 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-gray-500 file:focus:outline-none sm:rounded-md"
                   id="productImageURL"
                   autoComplete="off"
+                  disabled={
+                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                  }
                   {...register('productImageURL')}
                   accept="image/*"
                 />
@@ -201,13 +233,21 @@ function EditProductForm() {
 
         <Buttons position="text-end">
           <button
-            className="border border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
+            className="border font-semibold border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
             type="reset"
             onClick={() => navigate(-1)}
+            disabled={
+              isLoadingProduct || isLoadingCategories || isUpdatingProduct
+            }
           >
             Back
           </button>
-          <button className="bg-indigo-500 p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base">
+          <button
+            className="bg-indigo-500 font-semibold p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base"
+            disabled={
+              isLoadingProduct || isLoadingCategories || isUpdatingProduct
+            }
+          >
             Update
           </button>
         </Buttons>

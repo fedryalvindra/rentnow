@@ -16,6 +16,8 @@ import { Toaster } from 'react-hot-toast';
 import EditProductForm from './features/products/EditProductForm.jsx';
 import ProductCategoriesContainer from './features/categories/ProductCategoriesContainer.jsx';
 import ProductsContainer from './features/products/ProductsContainer.jsx';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,29 +31,34 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<Navigate to="/dashboard" />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/transactions" element={<Transactions />} />
-            <Route path="/products" element={<Products />}>
-              <Route index element={<ProductsContainer />} />
+      <SkeletonTheme baseColor="#e4e4e4" highlightColor="#efefef">
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/transactions" element={<Transactions />} />
+              <Route path="/products" element={<Products />}>
+                <Route index element={<ProductsContainer />} />
+                <Route
+                  path="categories"
+                  element={<ProductCategoriesContainer />}
+                />
+              </Route>
+              <Route path="/products/product-form" element={<ProductForm />} />
               <Route
-                path="categories"
-                element={<ProductCategoriesContainer />}
+                path="/products/:productID"
+                element={<EditProductForm />}
               />
-              <Route path="product-form" element={<ProductForm />} />
+              <Route path="/shipments" element={<Shipments />} />
+              <Route path="/payments" element={<Payments />} />
+              <Route path="/users" element={<Users />} />
             </Route>
-            <Route path="/products/:productID" element={<EditProductForm />} />
-            <Route path="/shipments" element={<Shipments />} />
-            <Route path="/payments" element={<Payments />} />
-            <Route path="/users" element={<Users />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </SkeletonTheme>
       <Toaster
         position="top-center"
         reverseOrder={false}

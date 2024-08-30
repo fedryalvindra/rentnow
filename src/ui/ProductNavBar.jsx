@@ -4,22 +4,15 @@ function ProductNavBar() {
   return (
     <ul
       id="productNavigation"
-      className="flex space-x-10 text-xs font-semibold lg:text-sm xl:text-base w-full"
+      className="flex w-full space-x-10 text-xs font-semibold lg:text-sm xl:text-base"
     >
       <li>
-        <NavLink
-          className="text-gray-400 transition-all duration-300 ease-in-out"
-          to="/products"
-          end
-        >
+        <NavLink className="pb-[2px] text-gray-400" to="/products" end>
           All Products
         </NavLink>
       </li>
       <li>
-        <NavLink
-          className="text-gray-400 transition-all duration-300 ease-in-out"
-          to="/products/categories"
-        >
+        <NavLink className="pb-[2px] text-gray-400" to="/products/categories">
           Categories
         </NavLink>
       </li>

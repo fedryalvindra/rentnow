@@ -19,7 +19,7 @@ function Sidebar() {
         >
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-3"
+              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/dashboard"
             >
               <HiOutlineHome className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
@@ -28,7 +28,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-3"
+              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/transactions"
             >
               <HiOutlineDocumentRemove className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
@@ -37,7 +37,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-3"
+              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/products"
             >
               <HiOutlineShoppingBag className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
@@ -46,7 +46,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-3"
+              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/shipments"
             >
               <HiOutlineClipboardList className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
@@ -55,7 +55,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-3"
+              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/payments"
             >
               <HiOutlineCurrencyDollar className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
@@ -64,7 +64,7 @@ function Sidebar() {
           </li>
           <li>
             <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-3"
+              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/users"
             >
               <HiOutlineUsers className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />

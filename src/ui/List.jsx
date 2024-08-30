@@ -50,7 +50,7 @@ function Items({ listType }) {
 
   if (listType === 'outstock')
     return (
-      <ul className="h-[5rem] space-y-1 overflow-scroll border-t border-gray-200 text-[6px] no-scrollbar md:h-[6rem] md:text-xs xl:h-32 xl:text-sm 2xl:h-[6rem]">
+      <ul className="h-[5rem] space-y-1 overflow-scroll border-t border-gray-200 text-[6px] no-scrollbar md:h-[6rem] md:text-xs xl:h-32 2xl:h-[6rem]">
         {listData.map((items) => (
           <OutStockItem key={items.id} items={items} />
         ))}

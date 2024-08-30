@@ -11,7 +11,7 @@ function OutStockItem({ items }) {
         />
         <div className="flex w-full items-center justify-between">
           <p className="font-semibold">{items.productName}</p>
-          <Button type="small">Add product</Button>
+          <Button type="small">ADD</Button>
         </div>
       </div>
     </li>

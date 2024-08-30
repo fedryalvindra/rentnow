@@ -4,7 +4,7 @@ import Table from '../../ui/Table.jsx';
 function TransactionsRows({ transaction }) {
   const statusColor = {
     complete: 'bg-green-300 text-green-600',
-    unconfirmed: 'bg-slate-300 text-slate-600',
+    unconfirmed: 'bg-sky-300 text-sky-600',
     sent: 'bg-orange-300 text-orange-600',
     paid: 'bg-yellow-300 text-yellow-600',
   };

@@ -27,7 +27,7 @@ function ProductRow({
           alt={productName}
         />
       </div>
-      <div className="content-center text-center font-semibold">
+      <div className="content-center text-center">
         {productName}
       </div>
       <div className="content-center text-center">{categoryName}</div>

@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useState } from 'react';
 import { useDeleteProduct } from '../features/products/useDeleteProduct.js';
+import { useDeleteCategory } from '../features/categories/useDeleteCategory.js';
 
 const ModalContext = createContext();
 
@@ -81,9 +82,12 @@ function Buttons() {
   const { id, type, dispatch } = useContext(ModalContext);
 
   const { mutate: deleteProduct } = useDeleteProduct();
+  const { mutate: deleteCategory } = useDeleteCategory();
 
   const handleDelete = () => {
     if (type === 'product') deleteProduct(id);
+    if (type === 'category') deleteCategory(id);
+
     dispatch({ type: 'admin/closeModal' });
   };
 

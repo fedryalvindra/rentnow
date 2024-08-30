@@ -3,7 +3,7 @@ function Button({ type, children, onClick, isFilter }) {
 
   if (type === 'full') width = 'w-full py-2';
 
-  if (type === 'small') width = 'xl:w-36 xl:text-sm';
+  if (type === 'small') width = 'xl:w-20 xl:text-xs';
 
   if (type === 'add') width = 'md:px-3';
 
@@ -19,7 +19,7 @@ function Button({ type, children, onClick, isFilter }) {
 
   return (
     <button
-      className={`bg-indigo-600 text-white ${width} rounded-sm p-1 text-[8px] font-semibold transition-all duration-200 hover:bg-indigo-700 sm:px-2 md:text-xs xl:text-sm`}
+      className={`bg-indigo-600 text-white ${width} rounded-sm p-1 text-[8px] font-semibold transition-all duration-200 hover:bg-indigo-700 sm:px-2 md:text-xs`}
       onClick={onClick}
     >
       {children}

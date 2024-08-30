@@ -1,15 +1,42 @@
 import Buttons from '../../ui/Buttons.jsx';
 import DeleteButton from '../../ui/DeleteButton.jsx';
-import EditButton from '../../ui/EditButton.jsx';
+import { useModalContext } from '../../ui/DeleteModal.jsx';
 import Table from '../../ui/Table.jsx';
+import { useUpdateCategory } from './useUpdateCategory.js';
 
 function ProductCategoriesRow({ item }) {
+  const { dispatch } = useModalContext();
+  const { mutate: updateCategory, isPending: isLoadingCategory } =
+    useUpdateCategory();
+
+  const handleUpdate = (e, item) => {
+    if (e.target.value.length < 1) return;
+    updateCategory({ ...item, categoryName: e.target.value });
+  };
+
   return (
     <Table.Col>
-      <div className="content-center">{item.categoryName}</div>
+      <input
+        className="focus:outline-none focus:ring-0"
+        defaultValue={item.categoryName}
+        type="text"
+        onBlur={(e) => handleUpdate(e, item)}
+        disabled={isLoadingCategory}
+      />
       <Buttons>
-        <DeleteButton />
-        <EditButton />
+        <DeleteButton
+          onClick={() => {
+            dispatch({
+              type: 'admin/openModal',
+              payload: {
+                title: 'Delete',
+                content: `Are you sure want to delete ${item.categoryName}?`,
+                id: item.id,
+                type: 'category',
+              },
+            });
+          }}
+        />
       </Buttons>
     </Table.Col>
   );

@@ -8,7 +8,7 @@ function Header({ setIsSidebar }) {
         className="sm:hidden"
         onClick={() => setIsSidebar((sidebar) => !sidebar)}
       />
-      <div className="flex w-full items-center justify-end gap-2 text-xs xl:text-xl">
+      <div className="flex w-full items-center justify-end gap-2 text-xs xl:text-lg">
         Fedry Alvindra
         <div className="flex items-center gap-1 border-l border-gray-400 px-2 xl:gap-3 xl:px-3">
           <HiOutlineUser className="md:text-md text-sm lg:text-lg xl:text-xl 2xl:text-2xl" />

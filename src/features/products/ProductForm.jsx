@@ -8,13 +8,13 @@ import { useCreateProduct } from './useCreateProduct.js';
 import { useNavigate } from 'react-router-dom';
 
 function ProductForm() {
-  const { data: categories, isLoading: isLoadingCategories } = useCategory();
   const { register, handleSubmit, formState, getValues } = useForm();
   const { errors } = formState;
-  const navigate = useNavigate();
+  const { data: categories, isLoading: isLoadingCategories } = useCategory();
   const { mutate: createProduct, isPending: isCreatingProduct } =
     useCreateProduct();
 
+  const navigate = useNavigate();
   if (isLoadingCategories || isCreatingProduct) return <PageSpinner />;
 
   const onSubmit = (product) => {
@@ -33,20 +33,21 @@ function ProductForm() {
       <BackButton />
 
       <div className="overflow-hidden sm:rounded-lg sm:border">
-        <h1 className="hidden font-semibold sm:block sm:bg-indigo-600 sm:p-2 sm:pl-4 sm:text-sm sm:text-white md:text-base lg:pl-6 lg:text-lg">
-          Create Product
-        </h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-3 sm:bg-white sm:p-4 lg:space-y-5 lg:p-6 2xl:space-y-6"
         >
           <InputLayout error={errors?.productName?.message}>
-            <label htmlFor="productName">Product Name</label>
+            <label className="font-semibold" htmlFor="productName">
+              Product Name
+            </label>
             <input
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
               type="text"
               id="productName"
               autoComplete="off"
+              placeholder="Product name"
+              disabled={isLoadingCategories || isCreatingProduct}
               {...register('productName', {
                 required: 'This field is required',
               })}
@@ -54,16 +55,23 @@ function ProductForm() {
           </InputLayout>
 
           <InputLayout error={errors?.categoryID?.message}>
-            <label htmlFor="categoryID">Category</label>
+            <label className="font-semibold" htmlFor="categoryID">
+              Category
+            </label>
             <select
-              className="w-20 bg-indigo-500 text-white p-1 lg:w-32 focus:ring-0"
+              className="w-20 rounded-sm bg-gray-400 p-1 text-white transition-all duration-200 hover:bg-gray-500 focus:outline-none md:rounded-md md:p-2 lg:w-32"
               id="categoryID"
+              disabled={isLoadingCategories || isCreatingProduct}
               {...register('categoryID', {
                 required: 'This field is required',
               })}
             >
               {categories?.map((category) => (
-                <option className='bg-white text-gray-700' value={category.id} key={category.id}>
+                <option
+                  className="bg-white text-gray-700"
+                  value={category.id}
+                  key={category.id}
+                >
                   {category.categoryName}
                 </option>
               ))}
@@ -71,12 +79,16 @@ function ProductForm() {
           </InputLayout>
 
           <InputLayout error={errors?.productPrice?.message}>
-            <label htmlFor="productPrice">Price</label>
+            <label className="font-semibold" htmlFor="productPrice">
+              Price
+            </label>
             <input
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
               type="text"
               id="productPrice"
               autoComplete="off"
+              placeholder="Min 500"
+              disabled={isLoadingCategories || isCreatingProduct}
               {...register('productPrice', {
                 required: 'This field is required',
                 min: {
@@ -88,13 +100,16 @@ function ProductForm() {
           </InputLayout>
 
           <InputLayout error={errors?.discount?.message}>
-            <label htmlFor="discount">Discount</label>
+            <label className="font-semibold" htmlFor="discount">
+              Discount
+            </label>
             <input
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
               type="text"
               id="discount"
               autoComplete="off"
               defaultValue={0}
+              disabled={isLoadingCategories || isCreatingProduct}
               {...register('discount', {
                 required: 'This field is required',
                 min: {
@@ -109,12 +124,16 @@ function ProductForm() {
           </InputLayout>
 
           <InputLayout error={errors?.stock?.message}>
-            <label htmlFor="stock">Stock</label>
+            <label className="font-semibold" htmlFor="stock">
+              Stock
+            </label>
             <input
               type="text"
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
               id="stock"
               autoComplete="off"
+              placeholder="Min 1"
+              disabled={isLoadingCategories || isCreatingProduct}
               {...register('stock', {
                 required: 'This field is required',
                 min: {
@@ -126,11 +145,15 @@ function ProductForm() {
           </InputLayout>
 
           <InputLayout error={errors?.description?.message}>
-            <label htmlFor="description">Description</label>
+            <label className="font-semibold" htmlFor="description">
+              Description
+            </label>
             <textarea
               className="h-48 w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
               id="description"
               autoComplete="off"
+              placeholder="Description"
+              disabled={isLoadingCategories || isCreatingProduct}
               {...register('description', {
                 required: 'This field is required',
               })}
@@ -138,12 +161,15 @@ function ProductForm() {
           </InputLayout>
 
           <InputLayout error={errors?.productImageURL?.message}>
-            <label htmlFor="productImageURL">Image</label>
+            <label className="font-semibold" htmlFor="productImageURL">
+              Image
+            </label>
             <input
               type="file"
-              className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-indigo-500 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-indigo-600 file:focus:outline-none sm:rounded-md"
+              className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-gray-400 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-gray-500 file:focus:outline-none sm:rounded-md"
               id="productImageURL"
               autoComplete="off"
+              disabled={isLoadingCategories || isCreatingProduct}
               {...register('productImageURL', {
                 required: 'This field is required',
               })}
@@ -153,13 +179,17 @@ function ProductForm() {
 
           <Buttons position="text-end">
             <button
-              className="border border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
+              className="border border-gray-700 p-1 px-2 text-xs font-semibold md:text-sm xl:text-base"
               type="reset"
               onClick={() => navigate(-1)}
+              disabled={isLoadingCategories || isCreatingProduct}
             >
               Back
             </button>
-            <button className="bg-indigo-500 p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base">
+            <button
+              className="bg-indigo-500 p-1 px-2 text-xs font-semibold text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base"
+              disabled={isLoadingCategories || isCreatingProduct}
+            >
               Confirm
             </button>
           </Buttons>

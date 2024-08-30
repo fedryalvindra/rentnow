@@ -16,7 +16,7 @@ function PaidItem({ items }) {
           <p className="xl:text-xs">{items.productName}</p>
         </div>
         <div className="content-center">
-          <Button>Check</Button>
+          <Button>CHECK</Button>
         </div>
       </div>
     </li>
