@@ -1,7 +1,13 @@
-import { HiOutlinePlus } from 'react-icons/hi';
-import Button from './Button.jsx';
+import AddButton from './AddButton.jsx';
 
-function Input({ handleSubmit, value, setValue, isLoading, placeholder }) {
+function Input({
+  handleSubmit,
+  value,
+  setValue,
+  isLoading,
+  placeholder,
+  button,
+}) {
   return (
     <form
       className="grid grid-cols-[1fr_auto] space-x-1"
@@ -15,12 +21,7 @@ function Input({ handleSubmit, value, setValue, isLoading, placeholder }) {
         onChange={(e) => setValue(e.target.value)}
         disabled={isLoading}
       />
-      <Button type="add">
-        <span className="flex items-center gap-1 sm:py-1">
-          <span className="hidden sm:block">ADD CATEGORY</span>
-          <HiOutlinePlus />
-        </span>
-      </Button>
+      <AddButton button={button} />
     </form>
   );
 }

@@ -24,6 +24,7 @@ function ProductCategoriesHeader({ isLoadingCategories }) {
         setValue={setCategoryName}
         isLoading={isCreateCategory || isLoadingCategories}
         placeholder="Category name"
+        button="Category"
       />
     </div>
   );

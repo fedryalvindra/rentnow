@@ -24,6 +24,7 @@ function ShipmentHeader() {
         setValue={setShipmentName}
         isLoading={isLoadingCreateShipment}
         placeholder="Shipment name"
+        button="Shipment"
       />
     </div>
   );

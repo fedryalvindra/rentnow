@@ -209,7 +209,7 @@ function EditProductForm() {
                 </label>
                 <input
                   type="file"
-                  className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-gray-400 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-gray-500 file:focus:outline-none sm:rounded-md"
+                  className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-gray-700 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-gray-800 file:focus:outline-none sm:rounded-md"
                   id="productImageURL"
                   autoComplete="off"
                   disabled={

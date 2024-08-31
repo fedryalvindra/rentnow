@@ -1,9 +1,7 @@
+import ShipmentTypeContainer from '../features/shipmentType/ShipmentTypeContainer.jsx';
+
 function ShipmentTypes() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <ShipmentTypeContainer />;
 }
 
-export default ShipmentTypes
+export default ShipmentTypes;

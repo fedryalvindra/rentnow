@@ -1,5 +1,15 @@
 import supabase from './supabase.js';
 
+export async function getShipment(shipmentID) {
+  let { data, error } = await supabase
+    .from('Shipment')
+    .select('*')
+    .eq('id', shipmentID)
+    .single();
+  if (error) throw new Error('Failed to get shipment data');
+  return data;
+}
+
 export async function getShipments() {
   let { data, error } = await supabase
     .from('Shipment')
