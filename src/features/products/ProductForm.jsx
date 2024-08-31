@@ -84,7 +84,7 @@ function ProductForm() {
             </label>
             <input
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
-              type="text"
+              type="number"
               id="productPrice"
               autoComplete="off"
               placeholder="Min 500"
@@ -105,10 +105,10 @@ function ProductForm() {
             </label>
             <input
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
-              type="text"
+              type="number"
               id="discount"
               autoComplete="off"
-              defaultValue={0}
+              defaultValue=""
               disabled={isLoadingCategories || isCreatingProduct}
               {...register('discount', {
                 required: 'This field is required',
@@ -128,7 +128,7 @@ function ProductForm() {
               Stock
             </label>
             <input
-              type="text"
+              type="number"
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
               id="stock"
               autoComplete="off"

@@ -6,7 +6,6 @@ import { useShipments } from './useShipments.js';
 
 function ShipmentContainer() {
   const { data, isLoading: isLoadingShipments } = useShipments();
-
   return (
     <PagesLayout>
       <div className="w-4/5 space-y-2 lg:w-3/6 xl:space-y-3">

@@ -17,12 +17,12 @@ function ShipmentRow({ shipment, totalTypes }) {
     updateShipment({ ...shipment, shipmentName: e.target.value });
   };
 
+  const handleShipmentTypeDetail = (e) => {
+    e.target === e.currentTarget && navigate(`/shipments/${shipment.id}`);
+  };
   return (
     <Table.Col>
-      <div
-        className="content-center"
-        onClick={(e) => e.target === e.currentTarget && navigate(`/shipments/${shipment.id}`)}
-      >
+      <div className="content-center" onClick={handleShipmentTypeDetail}>
         <input
           className="w-2/6 focus:outline-none focus:ring-0"
           defaultValue={shipmentName}
@@ -31,8 +31,14 @@ function ShipmentRow({ shipment, totalTypes }) {
           disabled={isLoadingUpdateShipment}
         />
       </div>
-      <div className="flex items-center gap-10">
-        <div>{totalTypes < 1 ? '-' : `${totalTypes} types`}</div>
+
+      <div
+        onClick={handleShipmentTypeDetail}
+        className="flex items-center gap-10"
+      >
+        <div onClick={handleShipmentTypeDetail}>
+          {totalTypes < 1 ? '-' : `${totalTypes} types`}
+        </div>
         <Buttons>
           <DeleteButton
             onClick={() => {

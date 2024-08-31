@@ -21,6 +21,7 @@ export async function getProducts() {
     .order('created_at', {
       ascending: false,
     });
+
   if (error) throw new Error('Failed to get products');
   return data;
 }

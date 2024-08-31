@@ -23,7 +23,7 @@ function TransactionsRows({ transaction }) {
       </div>
       <div className="flex items-center justify-center">
         <h1
-          className={`rounded-md ${statusColor[transaction.status]} p-1 font-semibold sm:px-2 md:rounded-full md:px-4 lg:px-6 text-[5px] sm:text-[8px] lg:text-xs`}
+          className={`rounded-md ${statusColor[transaction.status]} p-1 text-[5px] font-bold sm:px-2 sm:text-[8px] md:rounded-full md:px-4 lg:px-6 lg:text-xs`}
         >
           {transaction.status.toUpperCase()}
         </h1>

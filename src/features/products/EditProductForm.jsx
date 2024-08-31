@@ -67,7 +67,7 @@ function EditProductForm() {
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="overflow-hidden sm:rounded-sm md:rounded-md">
-          <div className="space-y-1 p-1 sm:grid sm:grid-cols-[1fr_11rem] sm:space-y-0 sm:rounded-md sm:border sm:bg-white md:grid-cols-[1fr_12rem] lg:p-2 xl:p-5 lg:grid-cols-[1fr_14rem] xl:grid-cols-[1fr_16rem] 2xl:grid-cols-[1fr_18rem]">
+          <div className="space-y-1 p-1 sm:grid sm:grid-cols-[1fr_11rem] sm:space-y-0 sm:rounded-md sm:border sm:bg-white md:grid-cols-[1fr_12rem] lg:grid-cols-[1fr_14rem] lg:p-2 xl:grid-cols-[1fr_16rem] xl:p-5 2xl:grid-cols-[1fr_18rem]">
             <div className="space-y-2 sm:p-3 md:space-y-4 lg:space-y-5 xl:space-y-6">
               <InputLayout error={errors?.productName?.message}>
                 <label className="font-semibold" htmlFor="productName">
@@ -92,7 +92,7 @@ function EditProductForm() {
                   Category
                 </label>
                 <select
-                  className="w-20 rounded-sm border p-1 transition-all duration-200 ray-500 focus:ring-0 sm:rounded-md sm:p-2 lg:w-32"
+                  className="ray-500 w-20 rounded-sm border p-1 transition-all duration-200 focus:ring-0 sm:rounded-md sm:p-2 lg:w-32"
                   id="categoryID"
                   defaultValue={categoryID}
                   disabled={
@@ -119,7 +119,7 @@ function EditProductForm() {
                 </label>
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
-                  type="text"
+                  type="number"
                   id="productPrice"
                   autoComplete="off"
                   defaultValue={productPrice}
@@ -142,7 +142,7 @@ function EditProductForm() {
                 </label>
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
-                  type="text"
+                  type="number"
                   id="discount"
                   autoComplete="off"
                   defaultValue={discount}
@@ -167,7 +167,7 @@ function EditProductForm() {
                   Stock
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   id="stock"
                   autoComplete="off"
@@ -233,7 +233,7 @@ function EditProductForm() {
 
         <Buttons position="text-end">
           <button
-            className="border font-semibold border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
+            className="border border-gray-700 p-1 px-2 text-xs font-semibold md:text-sm xl:text-base"
             type="reset"
             onClick={() => navigate(-1)}
             disabled={
@@ -243,7 +243,7 @@ function EditProductForm() {
             Back
           </button>
           <button
-            className="bg-indigo-500 font-semibold p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base"
+            className="bg-indigo-500 p-1 px-2 text-xs font-semibold text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base"
             disabled={
               isLoadingProduct || isLoadingCategories || isUpdatingProduct
             }

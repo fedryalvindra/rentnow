@@ -7,7 +7,7 @@ function ShipmentTypeTable({ shipmentTypes }) {
       <Table.Header>
         <Table.Row position="">Shipment Type</Table.Row>
         <Table.Row position="">Shipment Price</Table.Row>
-        <Table.Row position="">Estimated arrived</Table.Row>
+        <Table.Row position="text-end">Estimated arrived</Table.Row>
       </Table.Header>
       <Table.Body>
         {shipmentTypes?.map((shipmentType) => (

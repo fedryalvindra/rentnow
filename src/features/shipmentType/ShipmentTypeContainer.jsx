@@ -4,11 +4,13 @@ import PagesLayout from '../../ui/PagesLayout.jsx';
 import TableLoading from '../../ui/TableLoading.jsx';
 import ShipmentTypeHeader from './ShipmentTypeHeader.jsx';
 import ShipmentTypeTable from './ShipmentTypeTable.jsx';
+import { useDeleteShipmentType } from './useDeleteShipmentType.js';
 import { useShipmentType } from './useShipmentType.js';
 
 function ShipmentTypeContainer() {
   const { data: shipmentTypes, isLoading: isLoadingShipmentTypes } =
     useShipmentType();
+  const { isPending: isLoadingDeleteShipmentType } = useDeleteShipmentType();
 
   return (
     <PagesLayout>
@@ -18,8 +20,8 @@ function ShipmentTypeContainer() {
           <ShipmentTypeHeader />
           {!shipmentTypes?.length && !isLoadingShipmentTypes ? (
             <Empty data="Category Type" />
-          ) : isLoadingShipmentTypes ? (
-            <TableLoading type="products" />
+          ) : isLoadingShipmentTypes || isLoadingDeleteShipmentType ? (
+            <TableLoading type="shipments" count={1} />
           ) : (
             <ShipmentTypeTable shipmentTypes={shipmentTypes} />
           )}
