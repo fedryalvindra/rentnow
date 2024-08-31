@@ -92,7 +92,7 @@ function EditProductForm() {
                   Category
                 </label>
                 <select
-                  className="w-20 rounded-sm bg-gray-400 p-1 text-white transition-all duration-200 hover:bg-gray-500 focus:ring-0 sm:rounded-md sm:p-2 lg:w-32"
+                  className="w-20 rounded-sm border p-1 transition-all duration-200 ray-500 focus:ring-0 sm:rounded-md sm:p-2 lg:w-32"
                   id="categoryID"
                   defaultValue={categoryID}
                   disabled={

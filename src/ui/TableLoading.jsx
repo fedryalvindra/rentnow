@@ -10,6 +10,10 @@ function TableLoading({ type, count }) {
       header: 'h-5 sm:h-5 md:h-9 lg:h-10',
       body: 'h-8 sm:h-9 md:h-11 lg:h-12',
     },
+    shipments: {
+      header: 'h-5 sm:h-5 md:h-9 lg:h-10',
+      body: 'h-8 sm:h-9 md:h-11 lg:h-12',
+    },
   };
 
   // {styles[type].body}

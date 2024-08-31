@@ -1,7 +1,7 @@
-import PageSpinner from "../ui/PageSpinner.jsx";
+import ShipmentContainer from '../features/shipments/ShipmentContainer.jsx';
 
 function Shipments() {
-  return <PageSpinner />
+  return <ShipmentContainer />;
 }
 
 export default Shipments;

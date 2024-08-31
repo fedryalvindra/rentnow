@@ -18,6 +18,8 @@ import ProductCategoriesContainer from './features/categories/ProductCategoriesC
 import ProductsContainer from './features/products/ProductsContainer.jsx';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import DeleteModal from './ui/DeleteModal.jsx';
+import ShipmentTypes from './pages/ShipmentTypes.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,32 +33,49 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <SkeletonTheme baseColor="#e4e4e4" highlightColor="#efefef">
+      <SkeletonTheme baseColor="#ffffff" highlightColor="#d4d4d4">
         <BrowserRouter>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route index element={<Navigate to="/dashboard" />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/transactions" element={<Transactions />} />
-              <Route path="/products" element={<Products />}>
-                <Route index element={<ProductsContainer />} />
+          <DeleteModal>
+            <Routes>
+              <Route element={<AppLayout />}>
+                <Route index element={<Navigate to="/dashboard" />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/transactions" element={<Transactions />} />
+                <Route path="/products" element={<Products />}>
+                  <Route index element={<ProductsContainer />} />
+                  <Route
+                    path="categories"
+                    element={<ProductCategoriesContainer />}
+                  />
+                </Route>
                 <Route
-                  path="categories"
-                  element={<ProductCategoriesContainer />}
+                  path="/products/product-form"
+                  element={<ProductForm />}
                 />
+                <Route
+                  path="/products/:productID"
+                  element={<EditProductForm />}
+                />
+                <Route path="/shipments" element={<Shipments />} />
+                <Route
+                  path="/shipments/:shipmentID"
+                  element={<ShipmentTypes />}
+                />
+                <Route path="/payments" element={<Payments />} />
+                <Route path="/users" element={<Users />} />
               </Route>
-              <Route path="/products/product-form" element={<ProductForm />} />
-              <Route
-                path="/products/:productID"
-                element={<EditProductForm />}
-              />
-              <Route path="/shipments" element={<Shipments />} />
-              <Route path="/payments" element={<Payments />} />
-              <Route path="/users" element={<Users />} />
-            </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+
+            <DeleteModal.Window>
+              <DeleteModal.Body>
+                <DeleteModal.Title />
+                <DeleteModal.Content />
+                <DeleteModal.Buttons />
+              </DeleteModal.Body>
+            </DeleteModal.Window>
+          </DeleteModal>
         </BrowserRouter>
       </SkeletonTheme>
       <Toaster

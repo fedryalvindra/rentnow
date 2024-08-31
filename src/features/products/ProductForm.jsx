@@ -59,7 +59,7 @@ function ProductForm() {
               Category
             </label>
             <select
-              className="w-20 rounded-sm bg-gray-400 p-1 text-white transition-all duration-200 hover:bg-gray-500 focus:outline-none md:rounded-md md:p-2 lg:w-32"
+              className="w-20 rounded-sm border p-1 transition-all duration-200 focus:outline-none md:rounded-md md:p-2 lg:w-32"
               id="categoryID"
               disabled={isLoadingCategories || isCreatingProduct}
               {...register('categoryID', {
