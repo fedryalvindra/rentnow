@@ -1,6 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from 'react-hot-toast';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import Login from './pages/Login.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
@@ -9,17 +12,14 @@ import Dashboard from './pages/Dashboard.jsx';
 import Transactions from './pages/Transactions.jsx';
 import Products from './pages/Products.jsx';
 import Shipments from './pages/Shipments.jsx';
-import Payments from './pages/Payments.jsx';
 import Users from './pages/Users.jsx';
 import ProductForm from './features/products/ProductForm.jsx';
-import { Toaster } from 'react-hot-toast';
 import EditProductForm from './features/products/EditProductForm.jsx';
 import ProductCategoriesContainer from './features/categories/ProductCategoriesContainer.jsx';
 import ProductsContainer from './features/products/ProductsContainer.jsx';
-import { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import DeleteModal from './ui/DeleteModal.jsx';
 import ShipmentTypes from './pages/ShipmentTypes.jsx';
+import PaymentType from './pages/PaymentType.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +33,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <SkeletonTheme baseColor="#ffffff" highlightColor="#d4d4d4">
+      <SkeletonTheme baseColor="#e7e7e7" highlightColor="#ffffff">
         <BrowserRouter>
           <DeleteModal>
             <Routes>
@@ -61,7 +61,7 @@ function App() {
                   path="/shipments/:shipmentID"
                   element={<ShipmentTypes />}
                 />
-                <Route path="/payments" element={<Payments />} />
+                <Route path="/payments" element={<PaymentType />} />
                 <Route path="/users" element={<Users />} />
               </Route>
               <Route path="/login" element={<Login />} />

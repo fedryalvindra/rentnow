@@ -19,6 +19,7 @@ export async function createShipmentType(shipmentType) {
     .select();
 
   if (error) throw new Error('Shipment type can not be created');
+
   return data;
 }
 
