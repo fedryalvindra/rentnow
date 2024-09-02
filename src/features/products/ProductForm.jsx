@@ -6,6 +6,7 @@ import PageSpinner from '../../ui/PageSpinner.jsx';
 import { useCategory } from '../categories/useCategory.js';
 import { useCreateProduct } from './useCreateProduct.js';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../ui/Button.jsx';
 
 function ProductForm() {
   const { register, handleSubmit, formState, getValues } = useForm();
@@ -178,20 +179,16 @@ function ProductForm() {
           </InputLayout>
 
           <Buttons position="text-end">
-            <button
-              className="border border-gray-700 p-1 px-2 text-xs font-semibold md:text-sm xl:text-base"
-              type="reset"
-              onClick={() => navigate(-1)}
+            <Button
+              type="back"
               disabled={isLoadingCategories || isCreatingProduct}
-            >
-              Back
-            </button>
-            <button
-              className="bg-indigo-500 p-1 px-2 text-xs font-semibold text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base"
+            />
+            <Button
+              type="form"
               disabled={isLoadingCategories || isCreatingProduct}
             >
               Confirm
-            </button>
+            </Button>
           </Buttons>
         </form>
       </div>

@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import Buttons from '../../ui/Buttons.jsx';
 import InputLayout from '../../ui/InputLayout.jsx';
 import { useCreateShipmentType } from './useCreateShipmentType.js';
+import Button from '../../ui/Button.jsx';
 
 function ShipmentTypeForm({ setIsOpenForm }) {
   const { register, formState, handleSubmit } = useForm();
@@ -38,7 +39,7 @@ function ShipmentTypeForm({ setIsOpenForm }) {
               type="text"
               autoComplete="off"
               disabled={isLoadingCreateShipmentType}
-              placeholder='Shipment type'
+              placeholder="Shipment type"
               {...register('shipmentType', {
                 required: 'This field is required',
               })}
@@ -52,7 +53,7 @@ function ShipmentTypeForm({ setIsOpenForm }) {
               type="number"
               autoComplete="off"
               disabled={isLoadingCreateShipmentType}
-              placeholder='Input 0 for free cost'
+              placeholder="Input 0 for free cost"
               {...register('shipmentPrice', {
                 required: 'This field is required',
                 min: {
@@ -70,7 +71,7 @@ function ShipmentTypeForm({ setIsOpenForm }) {
               type="number"
               autoComplete="off"
               disabled={isLoadingCreateShipmentType}
-              placeholder='Input 0 for same day'
+              placeholder="Input 0 for same day"
               {...register('shipmentEstimatedArrived', {
                 required: 'This field is required',
                 min: {
@@ -82,19 +83,10 @@ function ShipmentTypeForm({ setIsOpenForm }) {
           </InputLayout>
         </div>
         <Buttons position="text-end">
-          <button
-            className="border border-gray-700 p-1 px-2 text-xs font-semibold md:text-sm xl:text-base"
-            type="reset"
-            disabled={isLoadingCreateShipmentType}
-          >
-            Reset
-          </button>
-          <button
-            className="bg-indigo-500 p-1 px-2 text-xs font-semibold text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base"
-            disabled={isLoadingCreateShipmentType}
-          >
+          <Button type="reset" disabled={isLoadingCreateShipmentType} />
+          <Button type="form" disabled={isLoadingCreateShipmentType}>
             Confirm
-          </button>
+          </Button>
         </Buttons>
       </form>
     </div>

@@ -1,5 +1,7 @@
+import UserContainer from '../features/users/UserContainer.jsx';
+
 function Users() {
-  return <>users</>;
+  return <UserContainer />;
 }
 
 export default Users;

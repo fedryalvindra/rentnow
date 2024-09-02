@@ -8,6 +8,7 @@ import Buttons from '../../ui/Buttons.jsx';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useUpdateProduct } from './useUpdateProduct.js';
+import Button from '../../ui/Button.jsx';
 
 function EditProductForm() {
   const { data: categories, isLoading: isLoadingCategories } = useCategory();
@@ -232,24 +233,20 @@ function EditProductForm() {
         </div>
 
         <Buttons position="text-end">
-          <button
-            className="border border-gray-700 p-1 px-2 text-xs font-semibold md:text-sm xl:text-base"
-            type="reset"
-            onClick={() => navigate(-1)}
+          <Button
+            type="back"
             disabled={
               isLoadingProduct || isLoadingCategories || isUpdatingProduct
             }
-          >
-            Back
-          </button>
-          <button
-            className="bg-indigo-500 p-1 px-2 text-xs font-semibold text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base"
+          />
+          <Button
+            type="form"
             disabled={
               isLoadingProduct || isLoadingCategories || isUpdatingProduct
             }
           >
             Update
-          </button>
+          </Button>
         </Buttons>
       </form>
     </section>
