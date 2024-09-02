@@ -19,7 +19,7 @@ function ShipmentTypeContainer() {
         <div className="space-y-2 md:space-y-3 lg:pt-3">
           <ShipmentTypeHeader />
           {!shipmentTypes?.length && !isLoadingShipmentTypes ? (
-            <Empty data="Category Type" />
+            <Empty data="Shipment Type" />
           ) : isLoadingShipmentTypes || isLoadingDeleteShipmentType ? (
             <TableLoading type="shipments" count={1} />
           ) : (

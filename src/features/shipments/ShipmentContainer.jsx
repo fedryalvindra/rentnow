@@ -1,3 +1,4 @@
+import Empty from '../../ui/Empty.jsx';
 import PagesLayout from '../../ui/PagesLayout.jsx';
 import TableLoading from '../../ui/TableLoading.jsx';
 import ShipmentHeader from './ShipmentHeader.jsx';
@@ -12,6 +13,8 @@ function ShipmentContainer() {
         <ShipmentHeader />
         {isLoadingShipments ? (
           <TableLoading type="shipments" count={2} />
+        ) : !data ? (
+          <Empty data="Shipment" />
         ) : (
           <ShipmentTable data={data} />
         )}

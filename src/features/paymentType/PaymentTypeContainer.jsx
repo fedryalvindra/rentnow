@@ -1,3 +1,4 @@
+import Empty from '../../ui/Empty.jsx';
 import PagesLayout from '../../ui/PagesLayout.jsx';
 import TableLoading from '../../ui/TableLoading.jsx';
 import PaymentTypeHeader from './PaymentTypeHeader.jsx';
@@ -14,6 +15,8 @@ function PaymentTypeContainer() {
         <PaymentTypeHeader />
         {isLoadingPaymentTypes ? (
           <TableLoading type="paymentTypes" count={2} />
+        ) : !paymentTypeObj ? (
+          <Empty data="Payment type" />
         ) : (
           <PaymentTypeTable paymentTypeObj={paymentTypeObj} />
         )}

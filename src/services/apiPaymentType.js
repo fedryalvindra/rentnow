@@ -1,5 +1,15 @@
 import supabase from './supabase.js';
 
+export async function getPaymentType(id) {
+  let { data, error } = await supabase
+    .from('PaymentType')
+    .select('*')
+    .eq('id', id)
+    .single();
+  if (error) throw new Error('Failed to get payment data');
+  return data;
+}
+
 export async function getPaymentTypes() {
   let { data, error } = await supabase
     .from('PaymentType')

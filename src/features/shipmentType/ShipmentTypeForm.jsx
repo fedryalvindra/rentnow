@@ -70,7 +70,7 @@ function ShipmentTypeForm({ setIsOpenForm }) {
               type="number"
               autoComplete="off"
               disabled={isLoadingCreateShipmentType}
-              placeholder='Estimated arrive'
+              placeholder='Input 0 for same day'
               {...register('shipmentEstimatedArrived', {
                 required: 'This field is required',
                 min: {

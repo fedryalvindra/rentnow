@@ -4,6 +4,7 @@ import { useDeleteCategory } from '../features/categories/useDeleteCategory.js';
 import { useDeleteShipment } from '../features/shipments/useDeleteShipment.js';
 import { useDeleteShipmentType } from '../features/shipmentType/useDeleteShipmentType.js';
 import { useDeletePaymentType } from '../features/paymentType/useDeletePaymentType.js';
+import { useDeletePayment } from '../features/payment/useDeletePayment.js';
 
 const ModalContext = createContext();
 
@@ -89,6 +90,7 @@ function Buttons() {
   const { mutate: deleteShipment } = useDeleteShipment();
   const { mutate: deleteShipmentType } = useDeleteShipmentType();
   const { mutate: deletePaymentType } = useDeletePaymentType();
+  const { mutate: deletePayment } = useDeletePayment();
 
   const handleDelete = () => {
     if (type === 'product') deleteProduct(id);
@@ -96,6 +98,7 @@ function Buttons() {
     if (type === 'shipment') deleteShipment(id);
     if (type === 'shipmentType') deleteShipmentType(id);
     if (type === 'paymentType') deletePaymentType(id);
+    if (type === 'payment') deletePayment(id);
 
     dispatch({ type: 'admin/closeModal' });
   };

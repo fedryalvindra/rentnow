@@ -20,6 +20,7 @@ import ProductsContainer from './features/products/ProductsContainer.jsx';
 import DeleteModal from './ui/DeleteModal.jsx';
 import ShipmentTypes from './pages/ShipmentTypes.jsx';
 import PaymentType from './pages/PaymentType.jsx';
+import Payment from './pages/Payment.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -62,6 +63,7 @@ function App() {
                   element={<ShipmentTypes />}
                 />
                 <Route path="/payments" element={<PaymentType />} />
+                <Route path="/payments/:paymentTypeID" element={<Payment />} />
                 <Route path="/users" element={<Users />} />
               </Route>
               <Route path="/login" element={<Login />} />
