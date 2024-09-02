@@ -6,10 +6,10 @@ export function useUpdateProduct() {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: ({ productObj, productImage }) =>
-      updateProduct({ productObj, productImage }),
+    mutationFn: ({ productObj, carImage }) =>
+      updateProduct({ productObj, carImage }),
     onSuccess: (data) => {
-      toast.success('Product successfully updated');
+      toast.success('Car successfully updated');
       queryClient.invalidateQueries({
         queryKey: ['products'],
       });

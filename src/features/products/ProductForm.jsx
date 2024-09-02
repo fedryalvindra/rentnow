@@ -18,12 +18,12 @@ function ProductForm() {
   const navigate = useNavigate();
   if (isLoadingCategories || isCreatingProduct) return <PageSpinner />;
 
-  const onSubmit = (product) => {
+  const onSubmit = (car) => {
     createProduct(
-      { ...product, productImageURL: product.productImageURL[0] },
+      { ...car, carImageURL: car.carImageURL[0] },
       {
         onSuccess: () => {
-          navigate('/products');
+          navigate('/cars');
         },
       },
     );
@@ -38,18 +38,35 @@ function ProductForm() {
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-3 sm:bg-white sm:p-4 lg:space-y-5 lg:p-6 2xl:space-y-6"
         >
-          <InputLayout error={errors?.productName?.message}>
-            <label className="font-semibold" htmlFor="productName">
-              Product Name
+          <InputLayout error={errors?.carName?.message}>
+            <label className="font-semibold" htmlFor="carName">
+              Car Name
             </label>
             <input
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
               type="text"
-              id="productName"
+              id="carName"
               autoComplete="off"
-              placeholder="Product name"
+              placeholder="Car name"
               disabled={isLoadingCategories || isCreatingProduct}
-              {...register('productName', {
+              {...register('carName', {
+                required: 'This field is required',
+              })}
+            />
+          </InputLayout>
+
+          <InputLayout error={errors?.plateNumber?.message}>
+            <label className="font-semibold" htmlFor="plateNumber">
+              Plate Number
+            </label>
+            <input
+              className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
+              type="text"
+              id="plateNumber"
+              autoComplete="off"
+              placeholder="Plat number"
+              disabled={isLoadingCategories || isCreatingProduct}
+              {...register('plateNumber', {
                 required: 'This field is required',
               })}
             />
@@ -79,22 +96,22 @@ function ProductForm() {
             </select>
           </InputLayout>
 
-          <InputLayout error={errors?.productPrice?.message}>
-            <label className="font-semibold" htmlFor="productPrice">
-              Price
+          <InputLayout error={errors?.carPrice?.message}>
+            <label className="font-semibold" htmlFor="carPrice">
+              Price per day
             </label>
             <input
               className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
               type="number"
-              id="productPrice"
+              id="carPrice"
               autoComplete="off"
               placeholder="Min 500"
               disabled={isLoadingCategories || isCreatingProduct}
-              {...register('productPrice', {
+              {...register('carPrice', {
                 required: 'This field is required',
                 min: {
                   value: 500,
-                  message: 'Product minimal price is 500',
+                  message: 'Car minimal price is 500',
                 },
               })}
             />
@@ -110,39 +127,43 @@ function ProductForm() {
               id="discount"
               autoComplete="off"
               defaultValue=""
+              placeholder='Input 0 for no discount'
               disabled={isLoadingCategories || isCreatingProduct}
               {...register('discount', {
                 required: 'This field is required',
                 min: {
                   value: 0,
-                  message: 'Product discount minimal 0',
+                  message: 'Car discount minimal 0',
                 },
                 validate: (discount) =>
-                  Number(discount) < Number(getValues().productPrice) ||
-                  'Discount must not higher than product price',
+                  Number(discount) < Number(getValues().carPrice) ||
+                  'Discount must not higher than Car price',
               })}
             />
           </InputLayout>
 
-          <InputLayout error={errors?.stock?.message}>
-            <label className="font-semibold" htmlFor="stock">
-              Stock
+          <InputLayout error={errors?.categoryID?.message}>
+            <label className="font-semibold" htmlFor="status">
+              Status
             </label>
-            <input
-              type="number"
-              className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
-              id="stock"
-              autoComplete="off"
-              placeholder="Min 1"
+            <select
+              className="w-20 rounded-sm border p-1 transition-all duration-200 focus:outline-none md:rounded-md md:p-2 lg:w-32"
+              id="categoryID"
               disabled={isLoadingCategories || isCreatingProduct}
-              {...register('stock', {
+              {...register('status', {
                 required: 'This field is required',
-                min: {
-                  value: 1,
-                  message: 'Product stock minimal 1',
-                },
               })}
-            />
+            >
+              <option className="bg-white text-gray-700" value="Available">
+                Available
+              </option>
+              <option className="bg-white text-gray-700" value="Rented">
+                Rented
+              </option>
+              <option className="bg-white text-gray-700" value="Maintenance">
+                Maintenance
+              </option>
+            </select>
           </InputLayout>
 
           <InputLayout error={errors?.description?.message}>
@@ -161,17 +182,17 @@ function ProductForm() {
             />
           </InputLayout>
 
-          <InputLayout error={errors?.productImageURL?.message}>
-            <label className="font-semibold" htmlFor="productImageURL">
+          <InputLayout error={errors?.carImageURL?.message}>
+            <label className="font-semibold" htmlFor="carImageURL">
               Image
             </label>
             <input
               type="file"
               className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-gray-700 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-gray-800 file:focus:outline-none sm:rounded-md"
-              id="productImageURL"
+              id="carImageURL"
               autoComplete="off"
               disabled={isLoadingCategories || isCreatingProduct}
-              {...register('productImageURL', {
+              {...register('carImageURL', {
                 required: 'This field is required',
               })}
               accept="image/*"

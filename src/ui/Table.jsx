@@ -5,7 +5,7 @@ const TableContext = createContext();
 function Table({ columns, children }) {
   return (
     <TableContext.Provider value={{ columns }}>
-      <div className="overflow-hidden rounded-xl border border-gray-300 text-[10px]">
+      <div className="overflow-hidden rounded-xl border border-gray-300 text-[6px]">
         {children}
       </div>
     </TableContext.Provider>
@@ -34,7 +34,7 @@ function Col({ children }) {
   return (
     <div
       style={{ gridTemplateColumns: columns }}
-      className={`grid cursor-pointer border-b p-2 text-[8px] transition-all duration-300 ease-in-out hover:bg-gray-100 sm:text-[10px] md:text-xs lg:text-sm`}
+      className={`grid cursor-pointer border-b p-2 text-[6px] transition-all duration-300 ease-in-out hover:bg-gray-50 sm:text-[8px] md:text-xs lg:text-sm`}
     >
       {children}
     </div>

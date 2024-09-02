@@ -1,11 +1,10 @@
 import {
-  HiOutlineClipboardList,
   HiOutlineCurrencyDollar,
   HiOutlineDocumentRemove,
   HiOutlineHome,
-  HiOutlineShoppingBag,
   HiOutlineUsers,
 } from 'react-icons/hi';
+import { IoCarOutline } from 'react-icons/io5';
 import { NavLink } from 'react-router-dom';
 
 function Sidebar() {
@@ -29,30 +28,22 @@ function Sidebar() {
           <li>
             <NavLink
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
-              to="/transactions"
+              to="/reservations"
             >
               <HiOutlineDocumentRemove className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
-              Transactions
+              Reservations
             </NavLink>
           </li>
           <li>
             <NavLink
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
-              to="/products"
+              to="/cars"
             >
-              <HiOutlineShoppingBag className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
-              Products
+              <IoCarOutline className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
+              Cars
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
-              to="/shipments"
-            >
-              <HiOutlineClipboardList className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
-              Shipments
-            </NavLink>
-          </li>
+
           <li>
             <NavLink
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"

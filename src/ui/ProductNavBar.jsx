@@ -7,12 +7,12 @@ function ProductNavBar() {
       className="flex w-full space-x-10 text-xs font-semibold lg:text-sm xl:text-base"
     >
       <li>
-        <NavLink className="pb-[2px] text-gray-400" to="/products" end>
-          All Products
+        <NavLink className="pb-[2px] text-gray-400" to="/cars" end>
+          All Cars
         </NavLink>
       </li>
       <li>
-        <NavLink className="pb-[2px] text-gray-400" to="/products/categories">
+        <NavLink className="pb-[2px] text-gray-400" to="/cars/categories">
           Categories
         </NavLink>
       </li>

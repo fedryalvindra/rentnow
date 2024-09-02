@@ -12,7 +12,7 @@ import Button from '../../ui/Button.jsx';
 
 function EditProductForm() {
   const { data: categories, isLoading: isLoadingCategories } = useCategory();
-  const { data: product, isLoading: isLoadingProduct } = useProduct();
+  const { data: car, isLoading: isLoadingCar } = useProduct();
   const { mutate: updateProduct, isPending: isUpdatingProduct } =
     useUpdateProduct();
 
@@ -20,26 +20,28 @@ function EditProductForm() {
   const { errors } = formState;
   const navigate = useNavigate();
 
-  if (isLoadingProduct || isLoadingCategories || isUpdatingProduct)
+  if (isLoadingCar || isLoadingCategories || isUpdatingProduct)
     return <PageSpinner />;
 
   const {
     id,
-    productName,
+    carName,
     categoryID,
-    productPrice,
+    carPrice,
     discount,
-    stock,
+    status,
     description,
-    productImageURL,
-  } = product;
+    carImageURL,
+    plateNumber,
+  } = car;
 
   const onSubmit = (data) => {
-    if (!data.productImageURL.length)
+    console.log(data);
+    if (!data.carImageURL.length)
       updateProduct(
         {
-          productObj: { ...data, id, productImageURL },
-          productImage: false,
+          productObj: { ...data, id, carImageURL },
+          carImage: false,
         },
         {
           onSuccess: () => {
@@ -48,11 +50,11 @@ function EditProductForm() {
         },
       );
 
-    if (data.productImageURL.length)
+    if (data.carImageURL.length)
       updateProduct(
         {
-          productObj: { ...data, id, productImageURL: data.productImageURL[0] },
-          productImage: productImageURL,
+          productObj: { ...data, id, carImageURL: data.carImageURL[0] },
+          carImage: carImageURL,
         },
         {
           onSuccess: () => {
@@ -70,20 +72,39 @@ function EditProductForm() {
         <div className="overflow-hidden sm:rounded-sm md:rounded-md">
           <div className="space-y-1 p-1 sm:grid sm:grid-cols-[1fr_11rem] sm:space-y-0 sm:rounded-md sm:border sm:bg-white md:grid-cols-[1fr_12rem] lg:grid-cols-[1fr_14rem] lg:p-2 xl:grid-cols-[1fr_16rem] xl:p-5 2xl:grid-cols-[1fr_18rem]">
             <div className="space-y-2 sm:p-3 md:space-y-4 lg:space-y-5 xl:space-y-6">
-              <InputLayout error={errors?.productName?.message}>
-                <label className="font-semibold" htmlFor="productName">
-                  Product Name
+              <InputLayout error={errors?.carName?.message}>
+                <label className="font-semibold" htmlFor="carName">
+                  Car Name
                 </label>
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   type="text"
-                  id="productName"
+                  id="carName"
                   autoComplete="off"
-                  defaultValue={productName}
+                  defaultValue={carName}
                   disabled={
-                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                    isLoadingCar || isLoadingCategories || isUpdatingProduct
                   }
-                  {...register('productName', {
+                  {...register('carName', {
+                    required: 'This field is required',
+                  })}
+                />
+              </InputLayout>
+
+              <InputLayout error={errors?.plateNumber?.message}>
+                <label className="font-semibold" htmlFor="plateNumber">
+                  Plate Number
+                </label>
+                <input
+                  className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
+                  type="text"
+                  id="plateNumber"
+                  autoComplete="off"
+                  defaultValue={plateNumber}
+                  disabled={
+                    isLoadingCar || isLoadingCategories || isUpdatingProduct
+                  }
+                  {...register('plateNumber', {
                     required: 'This field is required',
                   })}
                 />
@@ -97,7 +118,7 @@ function EditProductForm() {
                   id="categoryID"
                   defaultValue={categoryID}
                   disabled={
-                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                    isLoadingCar || isLoadingCategories || isUpdatingProduct
                   }
                   {...register('categoryID', {
                     required: 'This field is required',
@@ -114,20 +135,20 @@ function EditProductForm() {
                   ))}
                 </select>
               </InputLayout>
-              <InputLayout error={errors?.productPrice?.message}>
-                <label className="font-semibold" htmlFor="productPrice">
-                  Price
+              <InputLayout error={errors?.carPrice?.message}>
+                <label className="font-semibold" htmlFor="carPrice">
+                  Price per day
                 </label>
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   type="number"
-                  id="productPrice"
+                  id="carPrice"
                   autoComplete="off"
-                  defaultValue={productPrice}
+                  defaultValue={carPrice}
                   disabled={
-                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                    isLoadingCar || isLoadingCategories || isUpdatingProduct
                   }
-                  {...register('productPrice', {
+                  {...register('carPrice', {
                     required: 'This field is required',
                     min: {
                       value: 500,
@@ -148,7 +169,7 @@ function EditProductForm() {
                   autoComplete="off"
                   defaultValue={discount}
                   disabled={
-                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                    isLoadingCar || isLoadingCategories || isUpdatingProduct
                   }
                   {...register('discount', {
                     required: 'This field is required',
@@ -157,33 +178,40 @@ function EditProductForm() {
                       message: 'Product discount minimal 0',
                     },
                     validate: (discount) =>
-                      Number(discount) < Number(getValues().productPrice) ||
+                      Number(discount) < Number(getValues().carPrice) ||
                       'Discount must not higher than product price',
                   })}
                 />
               </InputLayout>
 
-              <InputLayout error={errors?.stock?.message}>
-                <label className="font-semibold" htmlFor="stock">
-                  Stock
+              <InputLayout error={errors?.status?.message}>
+                <label className="font-semibold" htmlFor="status">
+                  Category
                 </label>
-                <input
-                  type="number"
-                  className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
-                  id="stock"
-                  autoComplete="off"
-                  defaultValue={stock}
+                <select
+                  className="ray-500 w-20 rounded-sm border p-1 transition-all duration-200 focus:ring-0 sm:rounded-md sm:p-2 lg:w-32"
+                  id="status"
+                  defaultValue={status}
                   disabled={
-                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                    isLoadingCar || isLoadingCategories || isUpdatingProduct
                   }
-                  {...register('stock', {
+                  {...register('status', {
                     required: 'This field is required',
-                    min: {
-                      value: 1,
-                      message: 'Product stock minimal 1',
-                    },
                   })}
-                />
+                >
+                  <option className="bg-white text-gray-700" value="available">
+                    Available
+                  </option>
+                  <option className="bg-white text-gray-700" value="rented">
+                    Rented
+                  </option>
+                  <option
+                    className="bg-white text-gray-700"
+                    value="maintenance"
+                  >
+                    Maintenance
+                  </option>
+                </select>
               </InputLayout>
 
               <InputLayout error={errors?.description?.message}>
@@ -196,7 +224,7 @@ function EditProductForm() {
                   autoComplete="off"
                   defaultValue={description}
                   disabled={
-                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                    isLoadingCar || isLoadingCategories || isUpdatingProduct
                   }
                   {...register('description', {
                     required: 'This field is required',
@@ -205,18 +233,18 @@ function EditProductForm() {
               </InputLayout>
 
               <InputLayout>
-                <label className="font-semibold" htmlFor="productImageURL">
+                <label className="font-semibold" htmlFor="carImageURL">
                   Update Image
                 </label>
                 <input
                   type="file"
                   className="text-gray sm:rounded-md-400 w-8/12 cursor-pointer bg-white file:cursor-pointer file:border-none file:bg-gray-700 file:p-1 file:px-3 file:text-white file:transition-all file:duration-200 file:hover:bg-gray-800 file:focus:outline-none sm:rounded-md"
-                  id="productImageURL"
+                  id="carImageURL"
                   autoComplete="off"
                   disabled={
-                    isLoadingProduct || isLoadingCategories || isUpdatingProduct
+                    isLoadingCar || isLoadingCategories || isUpdatingProduct
                   }
-                  {...register('productImageURL')}
+                  {...register('carImageURL')}
                   accept="image/*"
                 />
               </InputLayout>
@@ -225,8 +253,8 @@ function EditProductForm() {
             <aside className="flex justify-end sm:h-full sm:flex-none">
               <img
                 className="h-10 w-20 content-center border bg-white object-scale-down sm:h-full sm:w-full sm:border-none lg:p-2"
-                src={productImageURL}
-                alt={productName}
+                src={carImageURL}
+                alt={carName}
               />
             </aside>
           </div>
@@ -235,15 +263,11 @@ function EditProductForm() {
         <Buttons position="text-end">
           <Button
             type="back"
-            disabled={
-              isLoadingProduct || isLoadingCategories || isUpdatingProduct
-            }
+            disabled={isLoadingCar || isLoadingCategories || isUpdatingProduct}
           />
           <Button
             type="form"
-            disabled={
-              isLoadingProduct || isLoadingCategories || isUpdatingProduct
-            }
+            disabled={isLoadingCar || isLoadingCategories || isUpdatingProduct}
           >
             Update
           </Button>

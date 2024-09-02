@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { getProduct } from '../../services/apiProducts.js';
 
 export function useProduct() {
-  const { productID } = useParams();
+  const { carID } = useParams();
 
   const { data, isLoading } = useQuery({
-    queryKey: ['products', 'product', productID],
-    queryFn: () => getProduct(productID),
+    queryKey: ['products', 'product', carID],
+    queryFn: () => getProduct(carID),
   });
 
   return { data, isLoading };

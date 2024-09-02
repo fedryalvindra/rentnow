@@ -9,18 +9,18 @@ import Login from './pages/Login.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import AppLayout from './ui/AppLayout.jsx';
 import Dashboard from './pages/Dashboard.jsx';
-import Transactions from './pages/Transactions.jsx';
 import Products from './pages/Products.jsx';
-import Shipments from './pages/Shipments.jsx';
+
 import Users from './pages/Users.jsx';
 import ProductForm from './features/products/ProductForm.jsx';
 import EditProductForm from './features/products/EditProductForm.jsx';
 import ProductCategoriesContainer from './features/categories/ProductCategoriesContainer.jsx';
 import ProductsContainer from './features/products/ProductsContainer.jsx';
 import DeleteModal from './ui/DeleteModal.jsx';
-import ShipmentTypes from './pages/ShipmentTypes.jsx';
+
 import PaymentType from './pages/PaymentType.jsx';
 import Payment from './pages/Payment.jsx';
+import Reservations from './pages/Reservations.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,27 +41,16 @@ function App() {
               <Route element={<AppLayout />}>
                 <Route index element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/transactions" element={<Transactions />} />
-                <Route path="/products" element={<Products />}>
+                <Route path="/reservations" element={<Reservations />} />
+                <Route path="/cars" element={<Products />}>
                   <Route index element={<ProductsContainer />} />
                   <Route
                     path="categories"
                     element={<ProductCategoriesContainer />}
                   />
                 </Route>
-                <Route
-                  path="/products/product-form"
-                  element={<ProductForm />}
-                />
-                <Route
-                  path="/products/:productID"
-                  element={<EditProductForm />}
-                />
-                <Route path="/shipments" element={<Shipments />} />
-                <Route
-                  path="/shipments/:shipmentID"
-                  element={<ShipmentTypes />}
-                />
+                <Route path="/cars/car-form" element={<ProductForm />} />
+                <Route path="/cars/:carID" element={<EditProductForm />} />
                 <Route path="/payments" element={<PaymentType />} />
                 <Route path="/payments/:paymentTypeID" element={<Payment />} />
                 <Route path="/users" element={<Users />} />

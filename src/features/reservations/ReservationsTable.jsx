@@ -1,5 +1,6 @@
 import Table from '../../ui/Table.jsx';
-import TransactionsRows from './TransactionsRows.jsx';
+import ReservationsRows from './ReservationsRows.jsx';
+import TransactionsRows from './ReservationsRows.jsx';
 
 const tempData = [
   {
@@ -26,7 +27,7 @@ const tempData = [
     email: 'fedryalvindra@gmail.com',
     transactionDate: '01-12-2024',
     shipmentEstimatedArrived: 2,
-    status: 'sent',
+    status: 'rented',
     totalPrice: 1200000,
   },
   {
@@ -94,7 +95,7 @@ const tempData = [
   },
 ];
 
-function TransactionsTable() {
+function ReservationsTable() {
   return (
     <Table columns="1fr 1fr 1fr 1fr">
       <Table.Header>
@@ -104,12 +105,12 @@ function TransactionsTable() {
         <Table.Row>AMOUNT</Table.Row>
       </Table.Header>
       <Table.Body>
-        {tempData.map((transaction) => (
-          <TransactionsRows key={transaction.id} transaction={transaction} />
+        {tempData.map((reservation) => (
+          <ReservationsRows key={reservation.id} reservation={reservation} />
         ))}
       </Table.Body>
     </Table>
   );
 }
 
-export default TransactionsTable;
+export default ReservationsTable;

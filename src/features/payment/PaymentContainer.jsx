@@ -8,19 +8,21 @@ import { usePayments } from './usePayments.js';
 
 function PaymentContainer() {
   const { data: payments, isLoading: isLoadingPayments } = usePayments();
-  
+
   return (
     <PagesLayout>
-      <BackButton />
       <div className="w-4/5 space-y-2 lg:w-3/6 xl:space-y-3">
-        <PaymentHeader />
-        {!payments?.length && !isLoadingPayments ? (
-          <Empty data="Payment" />
-        ) : isLoadingPayments ? (
-          <TableLoading type="payments" count={1} />
-        ) : (
-          <PaymentTable payments={payments} />
-        )}
+        <BackButton />
+        <div className="space-y-3 lg:pt-3">
+          <PaymentHeader />
+          {!payments?.length && !isLoadingPayments ? (
+            <Empty data="Payment" />
+          ) : isLoadingPayments ? (
+            <TableLoading type="payments" count={1} />
+          ) : (
+            <PaymentTable payments={payments} />
+          )}
+        </div>
       </div>
     </PagesLayout>
   );

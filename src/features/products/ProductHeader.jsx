@@ -19,24 +19,33 @@ function ProductHeader() {
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
-        <Heading>Products</Heading>
-        <Search placeholder="Search product name" />
+        <Heading>Cars</Heading>
+        <Search placeholder="Search car plate" />
       </div>
-      <div className="flex justify-end gap-2">
+      <div className="flex justify-end gap-1">
         {isLoading ? (
-          <Skeleton className="p-[2px] sm:p-2 h-full w-40 sm:w-72 xl:w-80" />
+          <Skeleton className="h-full w-40 p-[2px] sm:w-72 sm:p-2 xl:w-80" />
         ) : (
-          <Filter>
-            <Filter.Items
-              items={['all', ...categories, 'no-stock']}
-              filterField="category"
-            />
-          </Filter>
+          <>
+            <Filter>
+              <Filter.Items
+                items={['all', ...categories]}
+                filterField="category"
+              />
+            </Filter>
+
+            <Filter>
+              <Filter.Items
+                items={['all', 'Available', 'Rent', "Maintenance"]}
+                filterField="status"
+              />
+            </Filter>
+          </>
         )}
         <Sortby />
-        <Button type="add" onClick={() => navigate('product-form')}>
+        <Button type="add" onClick={() => navigate('car-form')}>
           <span className="flex items-center gap-1">
-            Add Product <HiOutlinePlus />
+            Add Car <HiOutlinePlus />
           </span>
         </Button>
       </div>

@@ -3,17 +3,17 @@ import Heading from '../../ui/Heading.jsx';
 import Search from '../../ui/Search.jsx';
 import Sortby from '../../ui/Sortby.jsx';
 
-function TransactionsHeader() {
+function ReservationsHeader() {
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
-        <Heading>Transactions</Heading>
-        <Search placeholder="Search transaction by id" />
+        <Heading>Reservations</Heading>
+        <Search placeholder="Search reservation by id" />
       </div>
       <div className="flex justify-end gap-1">
         <Filter>
           <Filter.Items
-            items={['all', 'unconfirmed', 'paid', 'sent', 'confirmed']}
+            items={['all', 'unconfirmed', 'paid', 'rented', 'complete']}
             filterField="status"
           />
         </Filter>
@@ -23,4 +23,4 @@ function TransactionsHeader() {
   );
 }
 
-export default TransactionsHeader;
+export default ReservationsHeader;

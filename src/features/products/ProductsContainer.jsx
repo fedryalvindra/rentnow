@@ -22,7 +22,7 @@ function ProductsContainer() {
       ) : products.length ? (
         <ProductTable products={products} />
       ) : (
-        <Empty data="product" />
+        <Empty data="car" />
       )}
     </>
   );

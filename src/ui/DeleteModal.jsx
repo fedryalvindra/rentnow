@@ -1,8 +1,7 @@
-import { createContext, useContext, useReducer, useState } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import { useDeleteProduct } from '../features/products/useDeleteProduct.js';
 import { useDeleteCategory } from '../features/categories/useDeleteCategory.js';
-import { useDeleteShipment } from '../features/shipments/useDeleteShipment.js';
-import { useDeleteShipmentType } from '../features/shipmentType/useDeleteShipmentType.js';
+
 import { useDeletePaymentType } from '../features/paymentType/useDeletePaymentType.js';
 import { useDeletePayment } from '../features/payment/useDeletePayment.js';
 
@@ -87,16 +86,14 @@ function Buttons() {
 
   const { mutate: deleteProduct } = useDeleteProduct();
   const { mutate: deleteCategory } = useDeleteCategory();
-  const { mutate: deleteShipment } = useDeleteShipment();
-  const { mutate: deleteShipmentType } = useDeleteShipmentType();
+
   const { mutate: deletePaymentType } = useDeletePaymentType();
   const { mutate: deletePayment } = useDeletePayment();
 
   const handleDelete = () => {
     if (type === 'product') deleteProduct(id);
     if (type === 'category') deleteCategory(id);
-    if (type === 'shipment') deleteShipment(id);
-    if (type === 'shipmentType') deleteShipmentType(id);
+
     if (type === 'paymentType') deletePaymentType(id);
     if (type === 'payment') deletePayment(id);
 
