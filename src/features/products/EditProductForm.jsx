@@ -109,6 +109,7 @@ function EditProductForm() {
                   })}
                 />
               </InputLayout>
+
               <InputLayout error={errors?.categoryID?.message}>
                 <label className="font-semibold" htmlFor="categoryID">
                   Category
@@ -202,9 +203,11 @@ function EditProductForm() {
                   <option className="bg-white text-gray-700" value="available">
                     Available
                   </option>
-                  <option className="bg-white text-gray-700" value="rented">
-                    Rented
+                  
+                  <option className="bg-white text-gray-700" value="unavailable">
+                    Unavailable
                   </option>
+
                   <option
                     className="bg-white text-gray-700"
                     value="maintenance"

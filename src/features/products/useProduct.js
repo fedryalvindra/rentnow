@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { getProduct } from '../../services/apiProducts.js';
+import { getProduct } from '../../services/apiCars.js';
 
 export function useProduct() {
   const { carID } = useParams();

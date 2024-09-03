@@ -6,7 +6,7 @@ import supabase, { supabaseUrl } from './supabase.js';
 
 export async function getProduct(id) {
   let { data, error } = await supabase
-    .from('Product')
+    .from('Car')
     .select('*')
     .eq('id', id)
     .single();
@@ -16,7 +16,7 @@ export async function getProduct(id) {
 
 export async function getProducts() {
   let { data, error } = await supabase
-    .from('Product')
+    .from('Car')
     .select('*, Category(categoryName)')
     .order('created_at', {
       ascending: false,
@@ -31,7 +31,7 @@ export async function createProduct(productObj) {
   const imageName = imageNameGenerate(carName, carImageURL.name);
   const carImageURLPath = `${supabaseUrl}/storage/v1/object/public/Products/${imageName}`;
   const { data, error: productError } = await supabase
-    .from('Product')
+    .from('Car')
     .insert([{ ...productObj, carImageURL: carImageURLPath }])
     .select()
     .single();
@@ -44,13 +44,13 @@ export async function createProduct(productObj) {
 
 export async function deleteProduct(id) {
   let { data, error: getProductError } = await supabase
-    .from('Product')
+    .from('Car')
     .select('carImageURL')
     .eq('id', id)
     .single();
   if (getProductError) throw new Error('Failed when getting car data');
 
-  const { error } = await supabase.from('Product').delete().eq('id', id);
+  const { error } = await supabase.from('Car').delete().eq('id', id);
   if (error) throw new Error('Failed to delete car');
 
   const deletedImage = deleteImageGenerate(data?.carImageURL);
@@ -61,7 +61,7 @@ export async function updateProduct({ productObj, carImage }) {
   if (!carImage) {
     console.log(carImage);
     const { data, error } = await supabase
-      .from('Product')
+      .from('Car')
       .update({ ...productObj })
       .eq('id', productObj.id)
       .select()
@@ -76,7 +76,7 @@ export async function updateProduct({ productObj, carImage }) {
     const carImageURLPath = `${supabaseUrl}/storage/v1/object/public/Products/${imageName}`;
 
     const { data, error } = await supabase
-      .from('Product')
+      .from('Car')
       .update({ ...productObj, carImageURL: carImageURLPath })
       .eq('id', productObj.id)
       .select()

@@ -127,7 +127,7 @@ function ProductForm() {
               id="discount"
               autoComplete="off"
               defaultValue=""
-              placeholder='Input 0 for no discount'
+              placeholder="Input 0 for no discount"
               disabled={isLoadingCategories || isCreatingProduct}
               {...register('discount', {
                 required: 'This field is required',
@@ -154,13 +154,14 @@ function ProductForm() {
                 required: 'This field is required',
               })}
             >
-              <option className="bg-white text-gray-700" value="Available">
+              <option className="bg-white text-gray-700" value="available">
                 Available
               </option>
-              <option className="bg-white text-gray-700" value="Rented">
-                Rented
+              <option className="bg-white text-gray-700" value="unavailable">
+                Unavailable
               </option>
-              <option className="bg-white text-gray-700" value="Maintenance">
+
+              <option className="bg-white text-gray-700" value="maintenance">
                 Maintenance
               </option>
             </select>

@@ -17,7 +17,7 @@ function ProductCategoriesHeader({ isLoadingCategories }) {
 
   return (
     <div className="flex flex-col space-y-2">
-      <Heading>Product Categories</Heading>
+      <Heading>Car Categories</Heading>
       <Input
         handleSubmit={handleSubmit}
         value={categoryName}

@@ -11,6 +11,10 @@ function TableLoading({ type, count }) {
       header: 'h-5 md:h-9 xl:h-10',
       body: 'h-8 sm:h-11 md:h-12 lg:h-16 xl:h-[70px]',
     },
+    rents: {
+      header: 'h-5 md:h-9 xl:h-10',
+      body: 'h-8 sm:h-11 md:h-12 lg:h-16 xl:h-[70px]',
+    },
     categories: {
       header: smallTable.header,
       body: smallTable.body,
@@ -30,7 +34,7 @@ function TableLoading({ type, count }) {
   return (
     <>
       <Skeleton className={styles[type].header} />
-      <Skeleton className={styles[type].body} count={count} />
+      <Skeleton count={count} className={styles[type].body}  />
     </>
   );
 }

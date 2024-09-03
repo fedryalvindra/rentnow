@@ -36,7 +36,7 @@ function ProductHeader() {
 
             <Filter>
               <Filter.Items
-                items={['all', 'Available', 'Rent', "Maintenance"]}
+                items={['all', 'available', 'unavailable', "maintenance"]}
                 filterField="status"
               />
             </Filter>

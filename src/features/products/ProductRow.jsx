@@ -4,6 +4,7 @@ import EditButton from '../../ui/EditButton.jsx';
 import { useModalContext } from '../../ui/DeleteModal.jsx';
 import Table from '../../ui/Table.jsx';
 import { useNavigate } from 'react-router-dom';
+import { formattedCurrency } from '../../helpers/currencyValidation.js';
 
 function ProductRow({
   item: {
@@ -23,8 +24,8 @@ function ProductRow({
   const statusStyles = {
     available:
       'bg-green-300 text-green-600 hover:bg-green-400 transition-all duration-300 ease-in',
-    rented:
-      'bg-orange-300 text-orange-600 hover:bg-orange-400 transition-all duration-300 ease-in',
+    unavailable:
+      'bg-gray-200 text-gray-600 hover:bg-gray-300 transition-all duration-300 ease-in',
     maintenance:
       'bg-sky-300 text-sky-600 hover:bg-sky-400 transition-all duration-300 ease-in',
   };
@@ -50,11 +51,14 @@ function ProductRow({
         </div>
       </div>
       <div className="content-center text-center">{categoryName}</div>
-      <div className="content-center text-center"> Rp. {carPrice}</div>
+      <div className="content-center text-center">
+        {' '}
+        Rp {formattedCurrency(carPrice)}
+      </div>
       <div
         className={`content-center text-center ${discount > 0 && 'font-semibold text-green-400'}`}
       >
-        {discount > 0 ? `Rp. ${discount}` : '-'}
+        {discount > 0 ? `Rp ${formattedCurrency(discount)}` : '-'}
       </div>
       <Buttons>
         <DeleteButton

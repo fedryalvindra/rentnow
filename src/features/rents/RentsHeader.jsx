@@ -3,11 +3,11 @@ import Heading from '../../ui/Heading.jsx';
 import Search from '../../ui/Search.jsx';
 import Sortby from '../../ui/Sortby.jsx';
 
-function ReservationsHeader() {
+function RentsHeader() {
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
-        <Heading>Reservations</Heading>
+        <Heading>Rents</Heading>
         <Search placeholder="Search reservation by id" />
       </div>
       <div className="flex justify-end gap-1">
@@ -23,4 +23,4 @@ function ReservationsHeader() {
   );
 }
 
-export default ReservationsHeader;
+export default RentsHeader;
