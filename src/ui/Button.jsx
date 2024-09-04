@@ -8,6 +8,8 @@ function Button({ type, children, onClick, isFilter, disabled }) {
   const buttonStyles = {
     mainColor:
       'bg-indigo-500 p-1 px-2 text-xs font-semibold text-white transition-all duration-200 hover:bg-indigo-600 md:text-sm xl:text-base',
+    deleteColor:
+      'bg-red-500 p-1 px-2 text-xs font-semibold text-white transition-all duration-200 hover:bg-red-600 md:text-sm xl:text-base',
     secondColor:
       'border border-gray-700 p-1 px-2 text-xs font-semibold md:text-sm xl:text-base',
   };
@@ -55,6 +57,17 @@ function Button({ type, children, onClick, isFilter, disabled }) {
     return (
       <button
         className={buttonStyles.mainColor}
+        disabled={disabled}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+
+  if (type === 'delete')
+    return (
+      <button
+        className={buttonStyles.deleteColor}
         disabled={disabled}
         onClick={onClick}
       >

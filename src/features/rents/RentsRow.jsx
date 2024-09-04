@@ -2,6 +2,7 @@ import { HiArrowNarrowRight } from 'react-icons/hi';
 import Table from '../../ui/Table.jsx';
 import { formattedDate } from '../../helpers/dateValidation.js';
 import { formattedCurrency } from '../../helpers/currencyValidation.js';
+import { useNavigate } from 'react-router-dom';
 
 function RentsRow({ rent }) {
   const {
@@ -23,8 +24,10 @@ function RentsRow({ rent }) {
     paid: 'bg-yellow-300 text-yellow-600 hover:bg-yellow-400 transition-all duration-300 ease-in',
   };
 
+  const navigate = useNavigate();
+
   return (
-    <Table.Col>
+    <Table.Col onClick={() => navigate(`/rents/${id}`)}>
       <img
         className="h-5 w-full content-center bg-white object-scale-down sm:h-7 lg:h-12 xl:h-14"
         src={carImageURL}
@@ -34,8 +37,6 @@ function RentsRow({ rent }) {
         <h1 className="font-semibold md:text-sm">{fullName}</h1>
         <p>{email}</p>
       </div>
-
-      <div className="content-center text-center">{carName}</div>
 
       <div className="flex items-center justify-between">
         {formattedDate(startDate)} <HiArrowNarrowRight />{' '}

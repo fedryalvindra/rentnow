@@ -21,6 +21,8 @@ import DeleteModal from './ui/DeleteModal.jsx';
 import PaymentType from './pages/PaymentType.jsx';
 import Payment from './pages/Payment.jsx';
 import Rents from './pages/Rents.jsx';
+import RentsContainer from './features/rents/RentsContainer.jsx';
+import RentDetail from './features/rents/RentDetail.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,7 +43,12 @@ function App() {
               <Route element={<AppLayout />}>
                 <Route index element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/rents" element={<Rents />} />
+                
+                <Route path="/rents" element={<Rents />}>
+                  <Route index element={<RentsContainer />} />
+                </Route>
+                <Route path="/rents/:rentID" element={<RentDetail />}/>
+
                 <Route path="/cars" element={<Products />}>
                   <Route index element={<ProductsContainer />} />
                   <Route
@@ -49,6 +56,7 @@ function App() {
                     element={<ProductCategoriesContainer />}
                   />
                 </Route>
+                
                 <Route path="/cars/car-form" element={<ProductForm />} />
                 <Route path="/cars/:carID" element={<EditProductForm />} />
                 <Route path="/payments" element={<PaymentType />} />

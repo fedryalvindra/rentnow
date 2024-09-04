@@ -1,7 +1,7 @@
-import RentsContainer from '../features/rents/RentsContainer.jsx';
+import { Outlet } from 'react-router-dom';
 
 function Rents() {
-  return <RentsContainer />;
+  return <Outlet />;
 }
 
 export default Rents;

@@ -10,3 +10,15 @@ export async function getRents() {
 
   return data;
 }
+
+export async function getRent(id) {
+  let { data, error } = await supabase
+    .from('Rent')
+    .select('*, Customer(*), Car(*), Payment(*)')
+    .eq('id', id)
+    .single();
+
+  if (error) throw new Error('Failed to get rent data');
+
+  return data;
+}

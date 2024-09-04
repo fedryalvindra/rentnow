@@ -28,13 +28,14 @@ function Body({ children }) {
   return <div className="bg-white">{children}</div>;
 }
 
-function Col({ children }) {
+function Col({ children, onClick }) {
   const { columns } = useContext(TableContext);
 
   return (
     <div
       style={{ gridTemplateColumns: columns }}
       className={`grid cursor-pointer border-b p-2 text-[6px] transition-all duration-300 ease-in-out hover:bg-gray-50 sm:text-[8px] md:text-xs lg:text-sm`}
+      onClick={onClick}
     >
       {children}
     </div>
