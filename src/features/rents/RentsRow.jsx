@@ -12,7 +12,6 @@ function RentsRow({ rent }) {
     totalPrice,
     status,
     Customer: { fullName, email },
-    Car: { carName, carImageURL },
   } = rent;
   const statusColor = {
     complete:
@@ -28,11 +27,6 @@ function RentsRow({ rent }) {
 
   return (
     <Table.Col onClick={() => navigate(`/rents/${id}`)}>
-      <img
-        className="h-5 w-full content-center bg-white object-scale-down sm:h-7 lg:h-12 xl:h-14"
-        src={carImageURL}
-        alt={carName}
-      />
       <div className="content-center">
         <h1 className="font-semibold md:text-sm">{fullName}</h1>
         <p>{email}</p>

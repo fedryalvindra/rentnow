@@ -3,10 +3,9 @@ import RentsRow from './RentsRow.jsx';
 
 function RentsTable({ rents }) {
   return (
-    <Table columns="1fr 1fr 1fr 1fr 1fr">
+    <Table columns="1fr 1fr 1fr 1fr">
       <Table.Header>
-        <Table.Row>RENT</Table.Row>
-        <Table.Row position=""></Table.Row>
+        <Table.Row position="">RENT</Table.Row>
         <Table.Row>DATE</Table.Row>
         <Table.Row>STATUS</Table.Row>
         <Table.Row>AMOUNT</Table.Row>

@@ -13,7 +13,7 @@ function TableLoading({ type, count }) {
     },
     rents: {
       header: 'h-5 md:h-9 xl:h-10',
-      body: 'h-8 sm:h-11 md:h-12 lg:h-16 xl:h-[70px]',
+      body: 'h-8 sm:h-10 md:h-12 lg:h-14 xl:h-[50px]',
     },
     categories: {
       header: smallTable.header,

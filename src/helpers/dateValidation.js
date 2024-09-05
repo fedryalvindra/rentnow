@@ -9,3 +9,10 @@ export function formattedDate(date) {
 
   return formattedDate;
 }
+export function calculateNumDays(startDate, endDate) {
+  const startDateObj = new Date(startDate);
+  const endDateObj = new Date(endDate);
+  const differenceMilliseconds = endDateObj - startDateObj;
+  const differenceInDays = differenceMilliseconds / (1000 * 60 * 60 * 24);
+  return differenceInDays;
+}

@@ -1,3 +1,4 @@
+import { getProduct } from './apiCars.js';
 import supabase from './supabase.js';
 
 export async function getRents() {
@@ -19,6 +20,32 @@ export async function getRent(id) {
     .single();
 
   if (error) throw new Error('Failed to get rent data');
+
+  return data;
+}
+
+export async function updateRent({ updateData, id }) {
+  const { data: updateSomeRent, error: errorUpdateSomeRent } = await supabase
+    .from('Rent')
+    .update({ ...updateData })
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (errorUpdateSomeRent) throw new Error('Failed to update some rent');
+
+  const car = await getProduct(updateSomeRent.carID);
+
+  const { data, error } = await supabase
+    .from('Rent')
+    .update({
+      totalPrice: (car?.carPrice - car?.discount) * updateSomeRent.numDays,
+    })
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) throw new Error('Failed to update rent');
 
   return data;
 }
