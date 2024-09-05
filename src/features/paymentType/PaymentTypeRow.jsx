@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Buttons from '../../ui/Buttons.jsx';
 import DeleteButton from '../../ui/DeleteButton.jsx';
-import { useModalContext } from '../../ui/DeleteModal.jsx';
+import { useModalContext } from '../../ui/Modal.jsx';
 import Table from '../../ui/Table.jsx';
 import { useUdpatePaymentType } from './useUpdatePaymentType.js';
 

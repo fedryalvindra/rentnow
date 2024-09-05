@@ -4,6 +4,8 @@ import { useDeleteCategory } from '../features/categories/useDeleteCategory.js';
 
 import { useDeletePaymentType } from '../features/paymentType/useDeletePaymentType.js';
 import { useDeletePayment } from '../features/payment/useDeletePayment.js';
+import { useUpdateRent } from '../features/rents/useUpdateRent.js';
+import { useNavigate } from 'react-router-dom';
 
 const ModalContext = createContext();
 
@@ -13,6 +15,7 @@ const inititalState = {
   content: '',
   id: '',
   type: '',
+  data: {},
 };
 
 function reducer(state, action) {
@@ -25,6 +28,7 @@ function reducer(state, action) {
         id: action.payload.id,
         type: action.payload.type,
         title: action.payload.title,
+        data: action.payload.data,
       };
     case 'admin/closeModal':
       return { inititalState };
@@ -33,8 +37,8 @@ function reducer(state, action) {
   }
 }
 
-function DeleteModal({ children }) {
-  const [{ isOpen, content, id, type, title }, dispatch] = useReducer(
+function Modal({ children }) {
+  const [{ isOpen, content, id, type, title, data }, dispatch] = useReducer(
     reducer,
     inititalState,
   );
@@ -55,6 +59,7 @@ function DeleteModal({ children }) {
         id,
         type,
         dispatch,
+        data,
       }}
     >
       {children}
@@ -82,13 +87,14 @@ function Body({ children }) {
 }
 
 function Buttons() {
-  const { id, type, dispatch } = useContext(ModalContext);
+  const { id, type, dispatch, title, data } = useContext(ModalContext);
 
   const { mutate: deleteProduct } = useDeleteProduct();
   const { mutate: deleteCategory } = useDeleteCategory();
 
   const { mutate: deletePaymentType } = useDeletePaymentType();
   const { mutate: deletePayment } = useDeletePayment();
+  const { mutate: updateRent } = useUpdateRent();
 
   const handleDelete = () => {
     if (type === 'product') deleteProduct(id);
@@ -100,22 +106,46 @@ function Buttons() {
     dispatch({ type: 'admin/closeModal' });
   };
 
-  return (
-    <div className="flex justify-end space-x-2">
-      <button
-        className="border border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
-        onClick={() => dispatch({ type: 'admin/closeModal' })}
-      >
-        Back
-      </button>
-      <button
-        className="bg-red-500 p-1 px-2 text-xs text-white md:text-sm xl:text-base"
-        onClick={handleDelete}
-      >
-        Delete
-      </button>
-    </div>
-  );
+  const handleUpdate = () => {
+    if (type === 'rent') updateRent({ updateData: { ...data }, id });
+    dispatch({ type: 'admin/closeModal' });
+  };
+
+  if (title.toLowerCase().includes('delete'))
+    return (
+      <div className="flex justify-end space-x-2">
+        <button
+          className="border border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
+          onClick={() => dispatch({ type: 'admin/closeModal' })}
+        >
+          Back
+        </button>
+        <button
+          className="bg-red-500 p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-red-600 md:text-sm xl:text-base"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+      </div>
+    );
+
+  if (title.toLowerCase().includes('edit'))
+    return (
+      <div className="flex justify-end space-x-2">
+        <button
+          className="border border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
+          onClick={() => dispatch({ type: 'admin/closeModal' })}
+        >
+          Back
+        </button>
+        <button
+          className="bg-green-500 p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-green-600 md:text-sm xl:text-base"
+          onClick={handleUpdate}
+        >
+          Edit
+        </button>
+      </div>
+    );
 }
 
 function Window({ children }) {
@@ -139,10 +169,10 @@ export const useModalContext = () => {
   return context;
 };
 
-DeleteModal.Title = Title;
-DeleteModal.Content = Content;
-DeleteModal.Body = Body;
-DeleteModal.Buttons = Buttons;
-DeleteModal.Window = Window;
+Modal.Title = Title;
+Modal.Content = Content;
+Modal.Body = Body;
+Modal.Buttons = Buttons;
+Modal.Window = Window;
 
-export default DeleteModal;
+export default Modal;

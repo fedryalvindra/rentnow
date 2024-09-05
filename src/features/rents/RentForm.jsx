@@ -4,13 +4,14 @@ import Buttons from '../../ui/Buttons.jsx';
 import InputLayout from '../../ui/InputLayout.jsx';
 import { calculateNumDays } from '../../helpers/dateValidation.js';
 import { useUpdateRent } from './useUpdateRent.js';
-import { useNavigate } from 'react-router-dom';
 import PageSpinner from '../../ui/PageSpinner.jsx';
+import { useModalContext } from '../../ui/Modal.jsx';
 
 const statusOption = ['unconfirmed', 'paid', 'rented', 'complete'];
 
 function RentForm({
   rent: {
+    id,
     startDate,
     endDate,
     status,
@@ -18,19 +19,26 @@ function RentForm({
   },
   cars,
 }) {
-  const { mutate: updateRent, isPending: isLoadingUpdateRent } =
-    useUpdateRent();
+  const { dispatch } = useModalContext();
+  const { isPending: isLoadingUpdateRent } = useUpdateRent();
 
   const { register, getValues, handleSubmit, formState } = useForm();
   const { errors } = formState;
-  const navigate = useNavigate();
 
   if (isLoadingUpdateRent) return <PageSpinner />;
 
   const handleUpdate = (data) => {
     const numDays = calculateNumDays(data.startDate, data.endDate);
-    updateRent({ ...data, numDays });
-    navigate(`/rents/`, { replace: true });
+    dispatch({
+      type: 'admin/openModal',
+      payload: {
+        title: 'Edit',
+        content: `Are you sure want to update this rent?`,
+        id: id,
+        type: 'rent',
+        data: { ...data, numDays },
+      },
+    });
   };
 
   return (
@@ -94,15 +102,17 @@ function RentForm({
               required: 'This field is required',
             })}
           >
-            {cars?.map((car) => (
-              <option
-                className="bg-white text-gray-700"
-                value={car.id}
-                key={car.id}
-              >
-                {car.carName.toUpperCase()}
-              </option>
-            ))}
+            {cars
+              ?.filter((car) => car.status === 'available')
+              .map((car) => (
+                <option
+                  className="bg-white text-gray-700"
+                  value={car.id}
+                  key={car.id}
+                >
+                  {car.carName.toUpperCase()}
+                </option>
+              ))}
           </select>
         </InputLayout>
 

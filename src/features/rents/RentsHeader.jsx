@@ -8,7 +8,7 @@ function RentsHeader() {
     <div className="space-y-1">
       <div className="flex items-center justify-between">
         <Heading>Rents</Heading>
-        <Search placeholder="Search reservation by id" />
+        <Search placeholder="Search reservation by plate number" />
       </div>
       <div className="flex justify-end gap-1">
         <Filter>

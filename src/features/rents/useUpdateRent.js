@@ -1,16 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { updateRent } from '../../services/apiRent.js';
 import toast from 'react-hot-toast';
 
 export function useUpdateRent() {
-  const { rentID } = useParams();
-
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (updateData) =>
-      updateRent({ updateData: { ...updateData }, id: rentID }),
+    mutationFn: updateRent,
     onSuccess: () => {
       toast.success('Successfully update rent data');
       queryClient.invalidateQueries({
@@ -18,6 +16,7 @@ export function useUpdateRent() {
       });
     },
     onError: (err) => toast.error(err.message),
+    onSettled: () => navigate('/rents'),
   });
 
   return { mutate, isPending };

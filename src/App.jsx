@@ -16,7 +16,7 @@ import ProductForm from './features/products/ProductForm.jsx';
 import EditProductForm from './features/products/EditProductForm.jsx';
 import ProductCategoriesContainer from './features/categories/ProductCategoriesContainer.jsx';
 import ProductsContainer from './features/products/ProductsContainer.jsx';
-import DeleteModal from './ui/DeleteModal.jsx';
+import Modal from './ui/Modal.jsx';
 
 import PaymentType from './pages/PaymentType.jsx';
 import Payment from './pages/Payment.jsx';
@@ -39,17 +39,20 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <SkeletonTheme baseColor="#e7e7e7" highlightColor="#ffffff">
         <BrowserRouter>
-          <DeleteModal>
+          <Modal>
             <Routes>
               <Route element={<AppLayout />}>
                 <Route index element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                
+
                 <Route path="/rents" element={<Rents />}>
                   <Route index element={<RentsContainer />} />
-                  <Route path='rent-form/:rentID' element={<RentFormContainer />} />
+                  <Route
+                    path="rent-form/:rentID"
+                    element={<RentFormContainer />}
+                  />
                 </Route>
-                <Route path="/rents/:rentID" element={<RentDetail />}/>
+                <Route path="/rents/:rentID" element={<RentDetail />} />
 
                 <Route path="/cars" element={<Products />}>
                   <Route index element={<ProductsContainer />} />
@@ -58,7 +61,7 @@ function App() {
                     element={<ProductCategoriesContainer />}
                   />
                 </Route>
-                
+
                 <Route path="/cars/car-form" element={<ProductForm />} />
                 <Route path="/cars/:carID" element={<EditProductForm />} />
                 <Route path="/payments" element={<PaymentType />} />
@@ -69,14 +72,14 @@ function App() {
               <Route path="*" element={<PageNotFound />} />
             </Routes>
 
-            <DeleteModal.Window>
-              <DeleteModal.Body>
-                <DeleteModal.Title />
-                <DeleteModal.Content />
-                <DeleteModal.Buttons />
-              </DeleteModal.Body>
-            </DeleteModal.Window>
-          </DeleteModal>
+            <Modal.Window>
+              <Modal.Body>
+                <Modal.Title />
+                <Modal.Content />
+                <Modal.Buttons />
+              </Modal.Body>
+            </Modal.Window>
+          </Modal>
         </BrowserRouter>
       </SkeletonTheme>
       <Toaster

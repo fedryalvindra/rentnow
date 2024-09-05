@@ -1,7 +1,7 @@
 import Buttons from '../../ui/Buttons.jsx';
 import DeleteButton from '../../ui/DeleteButton.jsx';
 import EditButton from '../../ui/EditButton.jsx';
-import { useModalContext } from '../../ui/DeleteModal.jsx';
+import { useModalContext } from '../../ui/Modal.jsx';
 import Table from '../../ui/Table.jsx';
 import { useNavigate } from 'react-router-dom';
 import { formattedCurrency } from '../../helpers/currencyValidation.js';
