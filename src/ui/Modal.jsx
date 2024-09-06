@@ -6,6 +6,8 @@ import { useDeletePaymentType } from '../features/paymentType/useDeletePaymentTy
 import { useDeletePayment } from '../features/payment/useDeletePayment.js';
 import { useUpdateRent } from '../features/rents/useUpdateRent.js';
 import { useNavigate } from 'react-router-dom';
+import { useCreateRent } from '../features/rents/useCreateRent.js';
+import { useDeleteRent } from '../features/rents/useDeleteRent.js';
 
 const ModalContext = createContext();
 
@@ -91,23 +93,30 @@ function Buttons() {
 
   const { mutate: deleteProduct } = useDeleteProduct();
   const { mutate: deleteCategory } = useDeleteCategory();
-
   const { mutate: deletePaymentType } = useDeletePaymentType();
   const { mutate: deletePayment } = useDeletePayment();
+  const { mutate: deleteRent } = useDeleteRent();
+
   const { mutate: updateRent } = useUpdateRent();
+  const { mutate: createRent } = useCreateRent();
 
   const handleDelete = () => {
     if (type === 'product') deleteProduct(id);
     if (type === 'category') deleteCategory(id);
-
     if (type === 'paymentType') deletePaymentType(id);
     if (type === 'payment') deletePayment(id);
+    if (type === 'rent') deleteRent(id);
 
     dispatch({ type: 'admin/closeModal' });
   };
 
   const handleUpdate = () => {
     if (type === 'rent') updateRent({ updateData: { ...data }, id });
+    dispatch({ type: 'admin/closeModal' });
+  };
+
+  const handleCreate = () => {
+    if (type === 'createRent') createRent(data);
     dispatch({ type: 'admin/closeModal' });
   };
 
@@ -143,6 +152,24 @@ function Buttons() {
           onClick={handleUpdate}
         >
           Edit
+        </button>
+      </div>
+    );
+
+  if (title.toLowerCase().includes('create'))
+    return (
+      <div className="flex justify-end space-x-2">
+        <button
+          className="border border-gray-700 p-1 px-2 text-xs md:text-sm xl:text-base"
+          onClick={() => dispatch({ type: 'admin/closeModal' })}
+        >
+          Back
+        </button>
+        <button
+          className="bg-green-500 p-1 px-2 text-xs text-white transition-all duration-200 hover:bg-green-600 md:text-sm xl:text-base"
+          onClick={handleCreate}
+        >
+          Create
         </button>
       </div>
     );

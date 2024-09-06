@@ -1,17 +1,19 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createCustomer } from '../../services/apiCustomers.js';
+import { deleteRent } from '../../services/apiRent.js';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
-export function useCreateCustomer() {
+export function useDeleteRent() {
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const { mutate, isPending } = useMutation({
-    mutationFn: createCustomer,
+    mutationFn: deleteRent,
     onSuccess: () => {
-      toast.success('Successfully add new customer');
+      toast.success('Rent successfully deleted');
       queryClient.invalidateQueries({
-        queryKey: ['customers'],
+        queryKey: ['rents'],
       });
+      navigate('/rents');
     },
     onError: (err) => toast.error(err.message),
   });

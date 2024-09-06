@@ -7,11 +7,13 @@ import PagesLayout from '../../ui/PagesLayout.jsx';
 import RentLoading from '../../ui/RentLoading.jsx';
 import RentDetailReport from './RentDetailReport.jsx';
 import { useRent } from './useRent.js';
+import { useModalContext } from '../../ui/Modal.jsx';
 
 function RentDetail() {
   const { data: rent, isLoading: isLoadingRent } = useRent();
   const navigate = useNavigate();
-  
+  const { dispatch } = useModalContext();
+
   return (
     <PagesLayout>
       <BackButton />
@@ -20,8 +22,28 @@ function RentDetail() {
         <div className="flex justify-between">
           <Button type="back" />
           <Buttons>
-            <Button type="delete">Delete</Button>
-            <Button type="form" onClick={() => navigate(`/rents/rent-form/${rent.id}`)}>Edit</Button>
+            <Button
+              type="delete"
+              onClick={() => {
+                dispatch({
+                  type: 'admin/openModal',
+                  payload: {
+                    title: 'Delete',
+                    content: `Are you sure want to delete this rent? This action is permanent!`,
+                    id: rent.id,
+                    type: 'rent',
+                  },
+                });
+              }}
+            >
+              Delete
+            </Button>
+            <Button
+              type="form"
+              onClick={() => navigate(`/rents/rent-form/${rent.id}`)}
+            >
+              Edit
+            </Button>
           </Buttons>
         </div>
       </div>

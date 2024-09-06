@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+import Button from '../../ui/Button.jsx';
 import Filter from '../../ui/Filter.jsx';
 import Heading from '../../ui/Heading.jsx';
 import Search from '../../ui/Search.jsx';
 import Sortby from '../../ui/Sortby.jsx';
+import { HiOutlinePlus } from 'react-icons/hi';
 
 function RentsHeader() {
+  const navigate = useNavigate();
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
@@ -18,6 +22,11 @@ function RentsHeader() {
           />
         </Filter>
         <Sortby />
+        <Button type="add" onClick={() => navigate('add-rent')}>
+          <span className="flex items-center gap-1">
+            Add Rent <HiOutlinePlus />
+          </span>
+        </Button>
       </div>
     </div>
   );

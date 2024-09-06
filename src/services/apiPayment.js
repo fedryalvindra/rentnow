@@ -12,6 +12,17 @@ export async function getPayments(id) {
   return data;
 }
 
+export async function getAllPayments() {
+  let { data, error } = await supabase
+    .from('Payment')
+    .select('*')
+    .order('created_at', { ascending: false });
+    
+  if (error) throw new Error('Failed to get payments data');
+
+  return data;
+}
+
 export async function createPayment({ paymentName, id }) {
   const { data, error } = await supabase
     .from('Payment')

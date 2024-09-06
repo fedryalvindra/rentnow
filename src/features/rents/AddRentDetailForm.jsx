@@ -1,48 +1,39 @@
 import { useForm } from 'react-hook-form';
-import Button from '../../ui/Button.jsx';
-import Buttons from '../../ui/Buttons.jsx';
 import InputLayout from '../../ui/InputLayout.jsx';
+import Buttons from '../../ui/Buttons.jsx';
+import Button from '../../ui/Button.jsx';
+import toast from 'react-hot-toast';
 import { calculateNumDays } from '../../helpers/dateValidation.js';
-import { useUpdateRent } from './useUpdateRent.js';
-import PageSpinner from '../../ui/PageSpinner.jsx';
 import { useModalContext } from '../../ui/Modal.jsx';
 
 const statusOption = ['unconfirmed', 'paid', 'rented', 'complete'];
 
-function RentForm({
-  rent: {
-    id,
-    startDate,
-    endDate,
-    status,
-    Car: { id: carID },
-  },
-  cars,
-}) {
-  const { dispatch } = useModalContext();
-  const { isPending: isLoadingUpdateRent } = useUpdateRent();
-
+function AddRentDetailForm({ customer, cars, payments }) {
   const { register, getValues, handleSubmit, formState } = useForm();
   const { errors } = formState;
+  const { dispatch } = useModalContext();
 
-  if (isLoadingUpdateRent) return <PageSpinner />;
-
-  const handleUpdate = (data) => {
+  const onSubmit = (data) => {
+    if (!customer) {
+      toast.error('Please choose customer email before create rent');
+      return;
+    }
     const numDays = calculateNumDays(data.startDate, data.endDate);
+    console.log({ ...data, numDays });
     dispatch({
       type: 'admin/openModal',
       payload: {
-        title: 'Edit',
-        content: `Are you sure want to update this rent?`,
-        id: id,
-        type: 'rent',
-        data: { ...data, numDays },
+        title: 'Create',
+        content: `Are you sure want to create this rent?`,
+        id: '',
+        type: 'createRent',
+        data: { ...data, numDays, customerID: customer.id },
       },
     });
   };
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit(handleUpdate)}>
+    <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
       <div className="space-y-5 rounded-md border bg-white p-3">
         <div className="grid grid-cols-[1fr_1fr]">
           <InputLayout type="date" error={errors?.startDate?.message}>
@@ -54,7 +45,6 @@ function RentForm({
               type="date"
               id="startDate"
               autoComplete="off"
-              defaultValue={startDate}
               //   disabled={true}
               {...register('startDate', {
                 required: 'This field is required',
@@ -77,7 +67,6 @@ function RentForm({
               type="date"
               id="endDate"
               autoComplete="off"
-              defaultValue={endDate}
               //   disabled={true}
               {...register('endDate', {
                 required: 'This field is required',
@@ -90,14 +79,36 @@ function RentForm({
         </div>
 
         <InputLayout>
+          <label className="font-semibold" htmlFor="paymentID">
+            Payment
+          </label>
+          <select
+            className="ray-500 rounded-sm border p-1 transition-all duration-200 focus:outline-none sm:rounded-md sm:p-2 lg:w-fit"
+            id="paymentID"
+            {...register('paymentID', {
+              required: 'This field is required',
+            })}
+            defaultValue={payments[0].paymentName}
+          >
+            {payments.map((payment) => (
+              <option
+                className="bg-white text-gray-700"
+                value={payment.id}
+                key={payment.id}
+              >
+                {payment.paymentName.toUpperCase()}
+              </option>
+            ))}
+          </select>
+        </InputLayout>
+
+        <InputLayout>
           <label className="font-semibold" htmlFor="carID">
             Car
           </label>
           <select
             className="ray-500 rounded-sm border p-1 transition-all duration-200 focus:outline-none sm:rounded-md sm:p-2 lg:w-fit"
             id="carID"
-            defaultValue={carID}
-            // disabled={isLoadingCar || isLoadingCategories || isUpdatingProduct}
             {...register('carID', {
               required: 'This field is required',
             })}
@@ -149,4 +160,4 @@ function RentForm({
   );
 }
 
-export default RentForm;
+export default AddRentDetailForm;

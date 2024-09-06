@@ -25,6 +25,7 @@ import RentsContainer from './features/rents/RentsContainer.jsx';
 import RentDetail from './features/rents/RentDetail.jsx';
 import RentFormContainer from './features/rents/RentFormContainer.jsx';
 import Customers from './pages/Customers.jsx';
+import AddRent from './pages/AddRent.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +53,7 @@ function App() {
                     path="rent-form/:rentID"
                     element={<RentFormContainer />}
                   />
+                  <Route path="add-rent" element={<AddRent />} />
                 </Route>
                 <Route path="/rents/:rentID" element={<RentDetail />} />
 

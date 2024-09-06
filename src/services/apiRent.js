@@ -24,6 +24,31 @@ export async function getRent(id) {
   return data;
 }
 
+export async function createRent(createData) {
+  const { data: createSomeRent, error: createError } = await supabase
+    .from('Rent')
+    .insert([{ ...createData }])
+    .select()
+    .single();
+
+  if (createError) throw new Error('Failed to create some rent');
+
+  const car = await getProduct(createSomeRent.carID);
+
+  const { data, error } = await supabase
+    .from('Rent')
+    .update({
+      totalPrice: (car?.carPrice - car?.discount) * createSomeRent.numDays,
+    })
+    .eq('id', createSomeRent.id)
+    .select()
+    .single();
+
+  if (error) throw new Error('Failed to update total price rent');
+
+  return data;
+}
+
 export async function updateRent({ updateData, id }) {
   const { data: updateSomeRent, error: errorUpdateSomeRent } = await supabase
     .from('Rent')
@@ -48,4 +73,10 @@ export async function updateRent({ updateData, id }) {
   if (error) throw new Error('Failed to update rent');
 
   return data;
+}
+
+export async function deleteRent(id) {
+  const { error } = await supabase.from('Rent').delete().eq('id', id);
+
+  if (error) throw new Error('Failed to delete rent');
 }

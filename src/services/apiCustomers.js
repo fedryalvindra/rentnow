@@ -22,3 +22,16 @@ export async function createCustomer(customer) {
   if (error) throw new Error('Failed to create new customer');
   return data;
 }
+
+export async function getCustomers(gmail) {
+  let { data, error } = await supabase
+    .from('Customer')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .textSearch('email', gmail)
+    .single();
+
+  if (error) throw new Error('There is no customer with that email');
+
+  return data;
+}
