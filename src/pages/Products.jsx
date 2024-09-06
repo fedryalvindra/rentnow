@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import ProductNavBar from '../ui/ProductNavBar.jsx';
 import PagesLayout from '../ui/PagesLayout.jsx';
+import ProductNavBar from '../ui/ProductNavBar.jsx';
 
 function Products() {
   return (

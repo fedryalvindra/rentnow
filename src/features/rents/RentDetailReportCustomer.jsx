@@ -12,10 +12,10 @@ function RentDetailReportCustomer({
   return (
     <div className="space-y-3 p-2 pt-3 lg:space-y-6 lg:px-5 lg:pb-5">
       <div className="grid grid-cols-[auto_auto_1fr] space-x-2 md:space-x-5">
-        <div className="content-center text-[10px] md:text-xs lg:text-[15px]">
+        <div className="content-center text-[10px] font-semibold md:text-xs lg:text-[15px]">
           {fullName}
         </div>
-        <div className="content-center text-[10px] md:text-xs lg:text-[15px]">
+        <div className="content-center text-[10px] font-semibold md:text-xs lg:text-[15px]">
           {email}
         </div>
         <div className="content-center text-end text-gray-400">
@@ -23,7 +23,7 @@ function RentDetailReportCustomer({
         </div>
       </div>
       <div className="grid grid-cols-[auto_1fr] space-x-2">
-        <div className="content-center text-[10px] md:text-xs lg:text-[15px]">
+        <div className="content-center text-[10px] font-semibold md:text-xs lg:text-[15px]">
           {phoneNum}
         </div>
         <div className="content-center text-end text-gray-400">{address}</div>
@@ -32,7 +32,7 @@ function RentDetailReportCustomer({
         <div className="content-center">Payment</div>
         <div className="content-center">{paymentName}</div>
       </div>
-      <div className="grid grid-cols-[1fr_1fr] font-semibold">
+      <div className="grid grid-cols-[1fr_1fr]">
         <div>Start Date {formattedDate(startDate)}</div>
         <div className="text-end">End Date {formattedDate(endDate)}</div>
       </div>

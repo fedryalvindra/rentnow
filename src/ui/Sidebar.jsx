@@ -1,3 +1,4 @@
+import { BiGroup } from 'react-icons/bi';
 import {
   HiOutlineCurrencyDollar,
   HiOutlineDocumentRemove,
@@ -51,6 +52,15 @@ function Sidebar() {
             >
               <HiOutlineCurrencyDollar className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
               Payments
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
+              to="/customers"
+            >
+              <BiGroup className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
+              Customers
             </NavLink>
           </li>
           <li>

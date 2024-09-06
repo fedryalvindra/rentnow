@@ -1,0 +1,24 @@
+import supabase from './supabase.js';
+
+export async function createCustomer(customer) {
+  let { data: phoneNumber } = await supabase
+    .from('Customer')
+    .select('phoneNum')
+    .eq('phoneNum', customer.phoneNum)
+    .single();
+  if (phoneNumber) throw new Error('Phone number already exist!');
+  let { data: email } = await supabase
+    .from('Customer')
+    .select('phoneNum')
+    .eq('email', customer.email)
+    .single();
+  if (email) throw new Error('Email already exist!');
+
+  const { data, error } = await supabase
+    .from('Customer')
+    .insert([customer])
+    .select()
+    .single();
+  if (error) throw new Error('Failed to create new customer');
+  return data;
+}

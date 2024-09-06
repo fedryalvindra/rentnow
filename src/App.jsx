@@ -24,6 +24,7 @@ import Rents from './pages/Rents.jsx';
 import RentsContainer from './features/rents/RentsContainer.jsx';
 import RentDetail from './features/rents/RentDetail.jsx';
 import RentFormContainer from './features/rents/RentFormContainer.jsx';
+import Customers from './pages/Customers.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -61,11 +62,11 @@ function App() {
                     element={<ProductCategoriesContainer />}
                   />
                 </Route>
-
                 <Route path="/cars/car-form" element={<ProductForm />} />
                 <Route path="/cars/:carID" element={<EditProductForm />} />
                 <Route path="/payments" element={<PaymentType />} />
                 <Route path="/payments/:paymentTypeID" element={<Payment />} />
+                <Route path="/customers" element={<Customers />} />
                 <Route path="/users" element={<Users />} />
               </Route>
               <Route path="/login" element={<Login />} />
