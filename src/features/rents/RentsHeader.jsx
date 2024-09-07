@@ -6,6 +6,25 @@ import Search from '../../ui/Search.jsx';
 import Sortby from '../../ui/Sortby.jsx';
 import { HiOutlinePlus } from 'react-icons/hi';
 
+const sortItems = [
+  {
+    title: 'Recent first',
+    value: 'date-desc',
+  },
+  {
+    title: 'Old first',
+    value: 'date-asc',
+  },
+  {
+    title: 'Highest price',
+    value: 'totalPrice-desc',
+  },
+  {
+    title: 'Lowest price',
+    value: 'totalPrice-asc',
+  },
+];
+
 function RentsHeader() {
   const navigate = useNavigate();
   return (
@@ -21,7 +40,7 @@ function RentsHeader() {
             filterField="status"
           />
         </Filter>
-        <Sortby />
+        <Sortby sortItems={sortItems} />
         <Button type="add" onClick={() => navigate('add-rent')}>
           <span className="flex items-center gap-1">
             Add Rent <HiOutlinePlus />

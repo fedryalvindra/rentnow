@@ -9,6 +9,25 @@ import { useCategory } from '../categories/useCategory.js';
 
 import Skeleton from 'react-loading-skeleton';
 
+const sortItems = [
+  {
+    title: 'Recent first',
+    value: 'date-desc',
+  },
+  {
+    title: 'Old first',
+    value: 'date-asc',
+  },
+  {
+    title: 'Highest price',
+    value: 'carPrice-desc',
+  },
+  {
+    title: 'Lowest price',
+    value: 'carPrice-asc',
+  },
+];
+
 function ProductHeader() {
   const { data, isLoading } = useCategory();
   const navigate = useNavigate();
@@ -36,13 +55,13 @@ function ProductHeader() {
 
             <Filter>
               <Filter.Items
-                items={['all', 'available', 'unavailable', "maintenance"]}
+                items={['all', 'available', 'unavailable', 'maintenance']}
                 filterField="status"
               />
             </Filter>
           </>
         )}
-        <Sortby />
+        <Sortby sortItems={sortItems}/>
         <Button type="add" onClick={() => navigate('car-form')}>
           <span className="flex items-center gap-1">
             Add Car <HiOutlinePlus />

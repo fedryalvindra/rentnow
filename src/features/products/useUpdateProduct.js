@@ -16,6 +16,9 @@ export function useUpdateProduct() {
       queryClient.invalidateQueries({
         queryKey: ['product', data.id],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['selectProducts'],
+      });
     },
     onError: (err) => toast.error(err.message),
   });

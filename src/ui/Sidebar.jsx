@@ -22,7 +22,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/dashboard"
             >
-              <HiOutlineHome className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
+              <HiOutlineHome className="md:text-m text-sm text-gray-400 lg:text-lg xl:text-xl" />
               Dashboard
             </NavLink>
           </li>
@@ -31,7 +31,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/rents"
             >
-              <HiOutlineDocumentRemove className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
+              <HiOutlineDocumentRemove className="md:text-m text-sm text-gray-400 lg:text-lg xl:text-xl" />
               Rents
             </NavLink>
           </li>
@@ -40,7 +40,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/cars"
             >
-              <IoCarOutline className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
+              <IoCarOutline className="md:text-m text-sm text-gray-400 lg:text-lg xl:text-xl" />
               Cars
             </NavLink>
           </li>
@@ -50,7 +50,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/payments"
             >
-              <HiOutlineCurrencyDollar className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
+              <HiOutlineCurrencyDollar className="md:text-m text-sm text-gray-400 lg:text-lg xl:text-xl" />
               Payments
             </NavLink>
           </li>
@@ -59,7 +59,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/customers"
             >
-              <BiGroup className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
+              <BiGroup className="md:text-m text-sm text-gray-400 lg:text-lg xl:text-xl" />
               Customers
             </NavLink>
           </li>
@@ -68,7 +68,7 @@ function Sidebar() {
               className="flex w-full items-center gap-1 rounded-md p-1 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-50 md:p-2 lg:gap-2 xl:py-5"
               to="/users"
             >
-              <HiOutlineUsers className="md:text-md text-sm text-gray-400 lg:text-lg xl:text-xl" />
+              <HiOutlineUsers className="md:text-m text-sm text-gray-400 lg:text-lg xl:text-xl" />
               Users
             </NavLink>
           </li>

@@ -1,11 +1,23 @@
 import { getProduct } from './apiCars.js';
 import supabase from './supabase.js';
 
-export async function getRents() {
-  let { data, error } = await supabase
+export async function getRents(status, sortBy) {
+  let query = supabase
     .from('Rent')
-    .select('*, Customer(fullName, email), Car(carName, carImageURL)')
-    .order('startDate', { ascending: false });
+    .select('*, Customer(fullName, email), Car(carName, carImageURL)');
+
+  if (status !== 'all') query = query.eq('status', status);
+  
+  if (sortBy === 'date-desc')
+    query = query.order('startDate', { ascending: false });
+  if (sortBy === 'date-asc')
+    query = query.order('startDate', { ascending: true });
+  if (sortBy === 'totalPrice-desc')
+    query = query.order('totalPrice', { ascending: false });
+  if (sortBy === 'totalPrice-asc')
+    query = query.order('totalPrice', { ascending: true });
+
+  let { data, error } = await query;
 
   if (error) throw new Error('Failed to get rents data');
 

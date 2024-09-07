@@ -12,6 +12,9 @@ export function useDeleteProduct() {
       queryClient.invalidateQueries({
         queryKey: ['products'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['selectProducts'],
+      });
     },
     onError: (err) => toast.error(err.message),
   });

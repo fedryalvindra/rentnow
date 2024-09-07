@@ -14,13 +14,41 @@ export async function getProduct(id) {
   return data;
 }
 
-export async function getProducts() {
-  let { data, error } = await supabase
+export async function getProductsSelect() {
+  const { data, error } = await supabase
     .from('Car')
     .select('*, Category(categoryName)')
-    .order('created_at', {
-      ascending: false,
-    });
+    .order('created_at', { ascending: false });
+
+  if (error) throw new Error('Failed to get cars');
+  return data;
+}
+
+export async function getProducts(status, category, sortBy) {
+  let query = supabase.from('Car').select('*, Category(categoryName)');
+
+  if (status !== 'all') query = query.eq('status', status);
+  if (category !== 'all') {
+    const { data: categoryData, error: categoryError } = await supabase
+      .from('Category')
+      .select('id')
+      .eq('categoryName', category)
+      .single();
+
+    if (categoryError) throw new Error('Failed to fetch category');
+    query = query.eq('categoryID', categoryData.id);
+  }
+  if (sortBy === 'date-desc')
+    query = query.order('created_at', { ascending: false });
+  if (sortBy === 'date-asc')
+    query = query.order('created_at', { ascending: true });
+
+  if (sortBy === 'carPrice-desc')
+    query = query.order('carPrice', { ascending: false });
+  if (sortBy === 'carPrice-asc')
+    query = query.order('carPrice', { ascending: true });
+
+  let { data, error } = await query;
 
   if (error) throw new Error('Failed to get cars');
   return data;

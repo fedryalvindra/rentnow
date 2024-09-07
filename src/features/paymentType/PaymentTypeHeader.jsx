@@ -12,6 +12,7 @@ function PaymentTypeHeader() {
     e.preventDefault();
     if (paymentType.length < 1) return;
     createPaymentType(paymentType);
+    setPaymentType('');
   };
 
   return (

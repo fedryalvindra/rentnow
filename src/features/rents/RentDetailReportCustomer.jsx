@@ -28,11 +28,11 @@ function RentDetailReportCustomer({
         </div>
         <div className="content-center text-end text-gray-400">{address}</div>
       </div>
-      <div className="flex gap-2 lg:gap-5 lg:text-sm">
+      <div className="flex gap-2 lg:gap-5 lg:text-sm font-semibold">
         <div className="content-center">Payment</div>
         <div className="content-center">{paymentName}</div>
       </div>
-      <div className="grid grid-cols-[1fr_1fr]">
+      <div className="grid grid-cols-[1fr_1fr] font-semibold">
         <div>Start Date {formattedDate(startDate)}</div>
         <div className="text-end">End Date {formattedDate(endDate)}</div>
       </div>

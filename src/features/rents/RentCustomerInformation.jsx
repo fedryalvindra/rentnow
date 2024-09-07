@@ -1,10 +1,10 @@
 import InputLayout from '../../ui/InputLayout.jsx';
 
 function RentCustomerInformation({
-  customer: { fullName, email, address, phoneNum },
+  customer: { fullName, phoneNum, email, address },
 }) {
   return (
-    <div className="bg-white p-3 space-y-3 rounded-md border">
+    <div className="space-y-3 rounded-md border bg-white p-3">
       <InputLayout>
         <label className="font-semibold" htmlFor="fullName">
           Name

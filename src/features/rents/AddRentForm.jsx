@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import EmptyRent from '../../ui/EmptyRent.jsx';
-import Search from '../../ui/Search.jsx';
-import { useCustomers } from '../customers/useCustomers.js';
-import RentCustomerInformation from './RentCustomerInformation.jsx';
-import { useProducts } from '../products/useProducts.js';
-import AddRentDetailForm from './AddRentDetailForm.jsx';
-import { useGetAllPayments } from '../payment/useGetAllPayments.js';
 import GetCustomerLoading from '../../ui/GetCustomerLoading.jsx';
 import RentFormLoading from '../../ui/RentFormLoading.jsx';
+import Search from '../../ui/Search.jsx';
+import { useCustomers } from '../customers/useCustomers.js';
+import { useGetAllPayments } from '../payment/useGetAllPayments.js';
+import { useSelectProduct } from '../products/useSelectProduct.js';
+import AddRentDetailForm from './AddRentDetailForm.jsx';
+import RentCustomerInformation from './RentCustomerInformation.jsx';
 
 function AddRentForm() {
   const {
@@ -16,7 +16,7 @@ function AddRentForm() {
     mutate: getCustomer,
   } = useCustomers();
   const [email, setEmail] = useState('');
-  const { data: cars, isLoading: isLoadingCars } = useProducts();
+  const { data: cars, isLoading: isLoadingCars } = useSelectProduct();
   const { data: payments, isLoading: isLoadingAllPayment } =
     useGetAllPayments();
 
