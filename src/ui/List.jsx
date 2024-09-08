@@ -1,14 +1,13 @@
 import { createContext, useContext } from 'react';
 import PaidItem from '../features/dashboard/PaidItem.jsx';
 import RentedItem from '../features/dashboard/RentedItem.jsx';
-import OutStockItem from '../features/dashboard/OutStockItem.jsx';
 
 const ListContext = createContext();
 
 function List({ listData, children }) {
   return (
     <ListContext.Provider value={{ listData }}>
-      <section className="h-full space-y-2 overflow-hidden rounded-sm border border-slate-100 bg-white p-2 shadow-sm 2xl:space-y-3 2xl:p-4 md:rounded-md">
+      <section className="h-full space-y-2 overflow-hidden rounded-sm border border-slate-100 bg-white p-2 shadow-sm md:rounded-md 2xl:space-y-3 2xl:p-4">
         {children}
       </section>
     </ListContext.Provider>
@@ -41,18 +40,9 @@ function Items({ listType }) {
 
   if (listType === 'rented')
     return (
-      <ul className="h-[5.5rem] space-y-2 overflow-scroll border-t border-gray-200 text-[6px] no-scrollbar md:h-[6rem] md:text-[8px] xl:text-xs 2xl:h-[7rem]">
+      <ul className="h-[14rem] overflow-scroll border-t border-gray-200 text-[7px] no-scrollbar md:text-xs xl:h-[16rem] xl:text-sm">
         {listData.map((items) => (
           <RentedItem key={items.id} items={items} />
-        ))}
-      </ul>
-    );
-
-  if (listType === 'outstock')
-    return (
-      <ul className="h-[5rem] space-y-1 overflow-scroll border-t border-gray-200 text-[6px] no-scrollbar md:h-[6rem] md:text-xs xl:h-32 2xl:h-[6rem]">
-        {listData.map((items) => (
-          <OutStockItem key={items.id} items={items} />
         ))}
       </ul>
     );
