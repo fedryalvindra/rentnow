@@ -2,6 +2,7 @@ import {
   deleteImageGenerate,
   imageNameGenerate,
 } from '../helpers/imageValidation.js';
+import { PAGE_SIZE } from '../ui/Pagination.jsx';
 import supabase, { supabaseUrl } from './supabase.js';
 
 export async function getProduct(id) {
@@ -24,8 +25,10 @@ export async function getProductsSelect() {
   return data;
 }
 
-export async function getProducts(status, category, sortBy) {
-  let query = supabase.from('Car').select('*, Category(categoryName)');
+export async function getProducts(status, category, sortBy, page, search) {
+  let query = supabase
+    .from('Car')
+    .select('*, Category(categoryName)', { count: 'exact' });
 
   if (status !== 'all') query = query.eq('status', status);
   if (category !== 'all') {
@@ -47,11 +50,17 @@ export async function getProducts(status, category, sortBy) {
     query = query.order('carPrice', { ascending: false });
   if (sortBy === 'carPrice-asc')
     query = query.order('carPrice', { ascending: true });
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+  if (search) query = query.textSearch('plateNumber', search);
 
-  let { data, error } = await query;
+  let { data, error, count } = await query;
 
   if (error) throw new Error('Failed to get cars');
-  return data;
+  return { data, count };
 }
 
 export async function createProduct(productObj) {

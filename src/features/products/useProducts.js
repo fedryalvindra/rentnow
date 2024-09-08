@@ -7,10 +7,12 @@ export function useProducts() {
   const status = searchParams.get('status');
   const category = searchParams.get('category');
   const sortBy = searchParams.get('sortBy');
+  const page = searchParams.get('page');
+  const search = searchParams.get('search');
 
   const { data, isLoading } = useQuery({
-    queryFn: () => getProducts(status, category, sortBy),
-    queryKey: ['products', status, category, sortBy],
+    queryFn: () => getProducts(status, category, sortBy, page, search),
+    queryKey: ['products', status, category, sortBy, page, search],
   });
 
   return { data, isLoading };

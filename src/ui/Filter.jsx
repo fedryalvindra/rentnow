@@ -30,6 +30,10 @@ function Items({ items, filterField }) {
       searchParams.set(filterField, item);
       return searchParams;
     });
+    setSearchParams((searchParams) => {
+      searchParams.set('page', 1);
+      return searchParams;
+    });
     setFilter(item);
   };
 

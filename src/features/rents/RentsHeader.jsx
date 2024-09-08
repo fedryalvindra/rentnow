@@ -1,10 +1,12 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Button from '../../ui/Button.jsx';
 import Filter from '../../ui/Filter.jsx';
 import Heading from '../../ui/Heading.jsx';
 import Search from '../../ui/Search.jsx';
 import Sortby from '../../ui/Sortby.jsx';
 import { HiOutlinePlus } from 'react-icons/hi';
+import { useEffect, useState } from 'react';
+import { useRents } from './useRents.js';
 
 const sortItems = [
   {
@@ -26,12 +28,29 @@ const sortItems = [
 ];
 
 function RentsHeader() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [plate, setPlate] = useState('');
   const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchParams((searchParams) => {
+      searchParams.set('search', plate);
+      return searchParams;
+    });
+  };
+
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
         <Heading>Rents</Heading>
-        <Search placeholder="Search reservation by plate number" />
+        <form onSubmit={handleSearch}>
+          <Search
+            value={plate}
+            onChange={setPlate}
+            placeholder="Search rent by car plate number"
+          />
+        </form>
       </div>
       <div className="flex justify-end gap-1">
         <Filter>

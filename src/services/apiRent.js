@@ -1,13 +1,16 @@
+import { PAGE_SIZE } from '../ui/Pagination.jsx';
 import { getProduct } from './apiCars.js';
 import supabase from './supabase.js';
 
-export async function getRents(status, sortBy) {
+export async function getRents(status, sortBy, page, search) {
   let query = supabase
     .from('Rent')
-    .select('*, Customer(fullName, email), Car(carName, carImageURL)');
+    .select('*, Customer(fullName, email), Car(carName, carImageURL)', {
+      count: 'exact',
+    });
 
   if (status !== 'all') query = query.eq('status', status);
-  
+
   if (sortBy === 'date-desc')
     query = query.order('startDate', { ascending: false });
   if (sortBy === 'date-asc')
@@ -17,11 +20,27 @@ export async function getRents(status, sortBy) {
   if (sortBy === 'totalPrice-asc')
     query = query.order('totalPrice', { ascending: true });
 
-  let { data, error } = await query;
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+  if (search) {
+    let { data: carID, error } = await supabase
+      .from('Car')
+      .select('id')
+      .eq('plateNumber', search)
+      .single();
+    if (error) throw new Error('There is no car with that plate number');
+    query = query.eq('carID', carID.id);
+  }
+
+  let { data, error, count } = await query;
 
   if (error) throw new Error('Failed to get rents data');
 
-  return data;
+  return { data, count };
 }
 
 export async function getRent(id) {

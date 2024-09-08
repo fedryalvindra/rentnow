@@ -4,10 +4,11 @@ import Filter from '../../ui/Filter.jsx';
 import Heading from '../../ui/Heading.jsx';
 import Search from '../../ui/Search.jsx';
 import Sortby from '../../ui/Sortby.jsx';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCategory } from '../categories/useCategory.js';
 
 import Skeleton from 'react-loading-skeleton';
+import { useState } from 'react';
 
 const sortItems = [
   {
@@ -30,16 +31,32 @@ const sortItems = [
 
 function ProductHeader() {
   const { data, isLoading } = useCategory();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [plate, setPlate] = useState('');
   const navigate = useNavigate();
 
   let categories;
   categories = data?.map((category) => category?.categoryName);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchParams((searchParams) => {
+      searchParams.set('search', plate);
+      return searchParams;
+    });
+  };
+
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
         <Heading>Cars</Heading>
-        <Search placeholder="Search car plate" />
+        <form onSubmit={handleSearch}>
+          <Search
+            value={plate}
+            onChange={setPlate}
+            placeholder="Search car plate"
+          />
+        </form>
       </div>
       <div className="flex justify-end gap-1">
         {isLoading ? (
@@ -61,7 +78,7 @@ function ProductHeader() {
             </Filter>
           </>
         )}
-        <Sortby sortItems={sortItems}/>
+        <Sortby sortItems={sortItems} />
         <Button type="add" onClick={() => navigate('car-form')}>
           <span className="flex items-center gap-1">
             Add Car <HiOutlinePlus />

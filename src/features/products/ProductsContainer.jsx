@@ -4,6 +4,7 @@ import { useDeleteProduct } from './useDeleteProduct.js';
 import Empty from '../../ui/Empty.jsx';
 import TableLoading from '../../ui/TableLoading.jsx';
 import { useProducts } from './useProducts.js';
+import Pagination from '../../ui/Pagination.jsx';
 
 function ProductsContainer() {
   const { data: products, isLoading: isLoadingProducts } = useProducts();
@@ -15,8 +16,11 @@ function ProductsContainer() {
       <ProductHeader />
       {isLoadingProducts || isDeletingProduct ? (
         <TableLoading type="products" count={10} />
-      ) : products.length ? (
-        <ProductTable products={products} />
+      ) : products?.data?.length ? (
+        <>
+          <ProductTable products={products?.data} />
+          <Pagination count={products?.count} />
+        </>
       ) : (
         <Empty data="car" />
       )}
