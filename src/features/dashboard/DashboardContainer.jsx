@@ -1,7 +1,7 @@
 import Heading from '../../ui/Heading.jsx';
 import OutStockProductList from './OutStockProductList.jsx';
-import PaidTransactionList from './PaidTransactionList.jsx';
-import SentTransactionList from './SentTransactionList.jsx';
+import PaidRentList from './PaidRentList.jsx';
+import RentedRentList from './RentedRentList.jsx';
 
 function DashboardContainer() {
   return (
@@ -9,9 +9,9 @@ function DashboardContainer() {
       <Heading>Dashboard</Heading>
       <div className="grid grid-rows-[1fr_1fr] space-y-6">
         <div className="grid grid-cols-[1fr_1fr] space-x-3 xl:space-x-2">
-          <PaidTransactionList />
+          <PaidRentList />
           <div className="grid grid-rows-[1fr_1fr] space-y-3 xl:space-y-1">
-            <SentTransactionList />
+            <RentedRentList />
             <OutStockProductList />
           </div>
         </div>

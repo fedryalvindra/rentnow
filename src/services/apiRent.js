@@ -43,6 +43,30 @@ export async function getRents(status, sortBy, page, search) {
   return { data, count };
 }
 
+export async function getPaidRents() {
+  let { data, error } = await supabase
+    .from('Rent')
+    .select('*, Customer(fullName), Car(carName)')
+    .eq('status', 'paid')
+    .range(0, 9);
+
+  if (error) throw new Error('Failed to get paid rent');
+
+  return data;
+}
+
+export async function getRentedRents() {
+  let { data, error } = await supabase
+    .from('Rent')
+    .select('*, Customer(fullName)')
+    .eq('status', 'rented')
+    .range(0, 9);
+
+  if (error) throw new Error('Failed to get rented rent');
+
+  return data;
+}
+
 export async function getRent(id) {
   let { data, error } = await supabase
     .from('Rent')

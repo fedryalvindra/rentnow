@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import PaidItem from '../features/dashboard/PaidItem.jsx';
-import SentItem from '../features/dashboard/SentItem.jsx';
+import RentedItem from '../features/dashboard/RentedItem.jsx';
 import OutStockItem from '../features/dashboard/OutStockItem.jsx';
 
 const ListContext = createContext();
@@ -39,11 +39,11 @@ function Items({ listType }) {
       </ul>
     );
 
-  if (listType === 'sent')
+  if (listType === 'rented')
     return (
       <ul className="h-[5.5rem] space-y-2 overflow-scroll border-t border-gray-200 text-[6px] no-scrollbar md:h-[6rem] md:text-[8px] xl:text-xs 2xl:h-[7rem]">
         {listData.map((items) => (
-          <SentItem key={items.id} items={items} />
+          <RentedItem key={items.id} items={items} />
         ))}
       </ul>
     );

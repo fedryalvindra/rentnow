@@ -54,7 +54,7 @@ function ProductHeader() {
           <Search
             value={plate}
             onChange={setPlate}
-            placeholder="Search car plate"
+            placeholder="Search car plate number"
           />
         </form>
       </div>

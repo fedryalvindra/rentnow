@@ -1,4 +1,6 @@
 import List from '../../ui/List.jsx';
+import PaidListLoading from '../../ui/PaidListLoading.jsx';
+import { useGetRentedRents } from './useGetRentedRents.js';
 
 const tempData = [
   {
@@ -54,10 +56,19 @@ const tempData = [
 ];
 
 function SentTransactionList() {
+  const { data, isLoading } = useGetRentedRents();
+  if (isLoading) return <PaidListLoading />;
+  
   return (
-    <List listData={tempData}>
-      <List.Title>Sent Transactions</List.Title>
-      <List.Items listType="sent" />
+    <List listData={data}>
+      <List.Title>Rented Rents</List.Title>
+      {!data.length ? (
+        <div className="pt-5 text-center text-[10px] xl:pt-0 xl:text-xs">
+          There is no paid rent
+        </div>
+      ) : (
+        <List.Items listType="rented" />
+      )}
     </List>
   );
 }
