@@ -50,6 +50,8 @@ export async function getProducts(status, category, sortBy, page, search) {
     query = query.order('carPrice', { ascending: false });
   if (sortBy === 'carPrice-asc')
     query = query.order('carPrice', { ascending: true });
+
+  if (!page) query = query.range(0, 9);
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
     const to = from + PAGE_SIZE - 1;

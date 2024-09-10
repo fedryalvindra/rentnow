@@ -20,6 +20,8 @@ export async function getRents(status, sortBy, page, search) {
   if (sortBy === 'totalPrice-asc')
     query = query.order('totalPrice', { ascending: true });
 
+  if (!page) query = query.range(0, 9);
+
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
     const to = from + PAGE_SIZE - 1;
@@ -134,4 +136,60 @@ export async function deleteRent(id) {
   const { error } = await supabase.from('Rent').delete().eq('id', id);
 
   if (error) throw new Error('Failed to delete rent');
+}
+
+export async function getRentTotalSales() {
+  let { data, error } = await supabase
+    .from('Rent')
+    .select('startDate, totalPrice')
+    .eq('status', 'complete')
+    .order('startDate', { ascending: true });
+
+  if (error) throw new Error('Failed to get total sales rent');
+
+  return data;
+}
+
+export async function getTotalPaid() {
+  let { count, error } = await supabase
+    .from('Rent')
+    .select('id', { count: 'exact' })
+    .eq('status', 'paid');
+
+  if (error) throw new Error('Failed to get total paid rent');
+
+  return count;
+}
+
+export async function getTotalUnconfirmed() {
+  let { count, error } = await supabase
+    .from('Rent')
+    .select('id', { count: 'exact' })
+    .eq('status', 'unconfirmed');
+
+  if (error) throw new Error('Failed to get total unconfirmed rent');
+
+  return count;
+}
+
+export async function getTotalRented() {
+  let { count, error } = await supabase
+    .from('Rent')
+    .select('id', { count: 'exact' })
+    .eq('status', 'rented');
+
+  if (error) throw new Error('Failed to get total rented rent');
+
+  return count;
+}
+
+export async function getTotalComplete() {
+  let { count, error } = await supabase
+    .from('Rent')
+    .select('id', { count: 'exact' })
+    .eq('status', 'complete');
+
+  if (error) throw new Error('Failed to get total rented rent');
+
+  return count;
 }

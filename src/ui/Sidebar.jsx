@@ -12,7 +12,7 @@ function Sidebar() {
   return (
     <aside className="border-r border-slate-100 bg-white p-1 xl:p-3">
       <nav className="flex flex-col items-center space-y-5 2xl:space-y-10">
-        <img src="/public/Logo.png" className="w-20 xl:w-36" />
+        <img src="/public/Logo.png" className="w-44 xl:w-64" />
         <ul
           id="sidebar"
           className="w-full space-y-3 text-[10px] font-semibold sm:space-y-2 md:text-sm xl:text-[15px]"
