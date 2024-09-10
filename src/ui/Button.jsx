@@ -77,7 +77,7 @@ function Button({ type, children, onClick, isFilter, disabled }) {
 
   return (
     <button
-      className={`bg-indigo-600 text-white ${width} rounded-sm p-1 text-[8px] font-semibold transition-all duration-200 hover:bg-indigo-700 sm:px-2 md:text-xs`}
+      className={`bg-indigo-600 text-white ${width} rounded-sm p-1 text-[8px] font-semibold transition-all duration-200 hover:bg-indigo-700 sm:px-2 md:text-xs xl:text-sm`}
       onClick={onClick}
     >
       {children}

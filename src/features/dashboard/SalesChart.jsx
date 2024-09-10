@@ -1,3 +1,4 @@
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import {
   Area,
   AreaChart,
@@ -7,14 +8,11 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { useGetTotalSalesRents } from './useGetTotalSalesRents.js';
 import {
   formattedTotalDate,
   formattedWithYearDate,
   sumSameDate,
 } from '../../helpers/dateValidation.js';
-import SalesChartLoading from '../../ui/SalesChartLoading.jsx';
-import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
 const fakeData = [
   {
