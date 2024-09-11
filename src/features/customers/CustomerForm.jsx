@@ -117,6 +117,13 @@ function CustomerForm() {
               disabled={isLoadingCreateCustomer}
               {...register('email', {
                 required: 'This field is required',
+                validate: (value) => {
+                  const email = value.split('@');
+                  return (
+                    email[1] === 'gmail.com' ||
+                    'Email must formatted @gmail.com'
+                  );
+                },
               })}
             />
           </InputLayout>

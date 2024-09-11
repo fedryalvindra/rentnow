@@ -5,8 +5,8 @@ import { useLogin } from './useLogin.js';
 import PageSpinner from '../../ui/PageSpinner.jsx';
 
 function LoginForm() {
-  const [email, setEmail] = useState('fedryalvindra32@gmail.com');
-  const [password, setPassword] = useState('pass123');
+  const [email, setEmail] = useState('fedryalvindra14@gmail.com');
+  const [password, setPassword] = useState('fedryalvindra');
   const [isHide, setIsHide] = useState(true);
   const { mutate: login, isPending: isLoadingLogin } = useLogin();
   const passwordType = isHide ? 'password' : 'text';

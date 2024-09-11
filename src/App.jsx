@@ -27,6 +27,7 @@ import RentFormContainer from './features/rents/RentFormContainer.jsx';
 import Customers from './pages/Customers.jsx';
 import AddRent from './pages/AddRent.jsx';
 import ProtectedRoute from './ui/ProtectedRoute.jsx';
+import Account from './pages/Account.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -77,6 +78,7 @@ function App() {
                 <Route path="/payments/:paymentTypeID" element={<Payment />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/account" element={<Account />} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<PageNotFound />} />
