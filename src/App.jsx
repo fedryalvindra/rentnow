@@ -26,6 +26,7 @@ import RentDetail from './features/rents/RentDetail.jsx';
 import RentFormContainer from './features/rents/RentFormContainer.jsx';
 import Customers from './pages/Customers.jsx';
 import AddRent from './pages/AddRent.jsx';
+import ProtectedRoute from './ui/ProtectedRoute.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,7 +44,13 @@ function App() {
         <BrowserRouter>
           <Modal>
             <Routes>
-              <Route element={<AppLayout />}>
+              <Route
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
                 <Route index element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
 
