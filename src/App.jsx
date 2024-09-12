@@ -1,33 +1,44 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { lazy, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import AppLayout from './ui/AppLayout.jsx';
-import Dashboard from './pages/Dashboard.jsx';
-import Products from './pages/Products.jsx';
-
-import Users from './pages/Users.jsx';
-import ProductForm from './features/products/ProductForm.jsx';
-import EditProductForm from './features/products/EditProductForm.jsx';
-import ProductCategoriesContainer from './features/categories/ProductCategoriesContainer.jsx';
-import ProductsContainer from './features/products/ProductsContainer.jsx';
 import Modal from './ui/Modal.jsx';
-
-import PaymentType from './pages/PaymentType.jsx';
-import Payment from './pages/Payment.jsx';
-import Rents from './pages/Rents.jsx';
-import RentsContainer from './features/rents/RentsContainer.jsx';
-import RentDetail from './features/rents/RentDetail.jsx';
-import RentFormContainer from './features/rents/RentFormContainer.jsx';
-import Customers from './pages/Customers.jsx';
-import AddRent from './pages/AddRent.jsx';
+import PageSpinner from './ui/PageSpinner.jsx';
 import ProtectedRoute from './ui/ProtectedRoute.jsx';
-import Account from './pages/Account.jsx';
+
+const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
+const Rents = lazy(() => import('./pages/Rents.jsx'));
+const RentsContainer = lazy(
+  () => import('./features/rents/RentsContainer.jsx'),
+);
+const RentFormContainer = lazy(
+  () => import('./features/rents/RentFormContainer.jsx'),
+);
+const AddRent = lazy(() => import('./pages/AddRent.jsx'));
+const RentDetail = lazy(() => import('./features/rents/RentDetail.jsx'));
+const Products = lazy(() => import('./pages/Products.jsx'));
+const ProductsContainer = lazy(
+  () => import('./features/products/ProductsContainer.jsx'),
+);
+const ProductCategoriesContainer = lazy(
+  () => import('./features/categories/ProductCategoriesContainer.jsx'),
+);
+const ProductForm = lazy(() => import('./features/products/ProductForm.jsx'));
+const EditProductForm = lazy(
+  () => import('./features/products/EditProductForm.jsx'),
+);
+const PaymentType = lazy(() => import('./pages/PaymentType.jsx'));
+const Payment = lazy(() => import('./pages/Payment.jsx'));
+const Customers = lazy(() => import('./pages/Customers.jsx'));
+const Users = lazy(() => import('./pages/Users.jsx'));
+const Account = lazy(() => import('./pages/Account.jsx'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,45 +55,55 @@ function App() {
       <SkeletonTheme baseColor="#e7e7e7" highlightColor="#ffffff">
         <BrowserRouter>
           <Modal>
-            <Routes>
-              <Route
-                element={
-                  <ProtectedRoute>
-                    <AppLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<Navigate to="/dashboard" />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+            <Suspense
+              fallback={
+                <div className="flex h-dvh items-center justify-center">
+                  <PageSpinner />
+                </div>
+              }
+            >
+              <Routes>
+                <Route
+                  element={
+                    <ProtectedRoute>
+                      <AppLayout />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route index element={<Navigate to="/dashboard" />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/rents" element={<Rents />}>
+                    <Route index element={<RentsContainer />} />
+                    <Route
+                      path="rent-form/:rentID"
+                      element={<RentFormContainer />}
+                    />
+                    <Route path="add-rent" element={<AddRent />} />
+                  </Route>
+                  <Route path="/rents/:rentID" element={<RentDetail />} />
 
-                <Route path="/rents" element={<Rents />}>
-                  <Route index element={<RentsContainer />} />
+                  <Route path="/cars" element={<Products />}>
+                    <Route index element={<ProductsContainer />} />
+                    <Route
+                      path="categories"
+                      element={<ProductCategoriesContainer />}
+                    />
+                  </Route>
+                  <Route path="/cars/car-form" element={<ProductForm />} />
+                  <Route path="/cars/:carID" element={<EditProductForm />} />
+                  <Route path="/payments" element={<PaymentType />} />
                   <Route
-                    path="rent-form/:rentID"
-                    element={<RentFormContainer />}
+                    path="/payments/:paymentTypeID"
+                    element={<Payment />}
                   />
-                  <Route path="add-rent" element={<AddRent />} />
+                  <Route path="/customers" element={<Customers />} />
+                  <Route path="/users" element={<Users />} />
+                  <Route path="/account" element={<Account />} />
                 </Route>
-                <Route path="/rents/:rentID" element={<RentDetail />} />
-
-                <Route path="/cars" element={<Products />}>
-                  <Route index element={<ProductsContainer />} />
-                  <Route
-                    path="categories"
-                    element={<ProductCategoriesContainer />}
-                  />
-                </Route>
-                <Route path="/cars/car-form" element={<ProductForm />} />
-                <Route path="/cars/:carID" element={<EditProductForm />} />
-                <Route path="/payments" element={<PaymentType />} />
-                <Route path="/payments/:paymentTypeID" element={<Payment />} />
-                <Route path="/customers" element={<Customers />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="/account" element={<Account />} />
-              </Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </Suspense>
 
             <Modal.Window>
               <Modal.Body>

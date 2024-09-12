@@ -1,16 +1,15 @@
-# Shoppih
+# Rentnow
 
-Shoppih is online shop web application. This website is aim for the internal company (Shoppih) to manage all the transactions created by customer and product effectively and efficiently
+Rentnow is rent car web application. This website is aim for the internal company (Rent) to manage all the rents created by customer and manage car effectively and efficiently
 
-## 5 Features of Shoppih
+## 5 Features of Rentnow
 
-- Dashboard: provide / summarize all the transactions that already paid by the customers, transactions that already sent to customers, product that outstock, and chart of the sales from the last 7 days.
-- Transactions: provide list of all the transactions done by customers, admin can update, delete, or edit all the transactions.
-- Products: provide list of all the products, admin can create, update, or delete the specific products.
-- Shipments: provide list of all shipments that customer can choose, admin can create, update, or delete the specific shipments.
-  In the shipments there are shipment types that correspond on shipment, (ex: JNE OKE corresponds to JNE)
+- Dashboard: provide all the rents that already paid and rented by the customers, provide graphic of total sales.
+- Rents: provide list of all the rents done by customers, admin can create, update, delete, or edit all the rents.
+- Cars: provide list of all the cars, admin can create, update, or delete the specific car.
 - Payments: provide list of all payment types that customer can choose, admin can create, update, or delete the specific payment types.
   In the payment types there are payments that correspond on payment types, (ex: Virtual Account corresponds to Transfer bank types)
+- Customers: Admin can create new customer.
 - Users: Admin can create another admin to manage all the business process that this website provide.
 
 ## Technology that i used for this project
@@ -19,10 +18,12 @@ Shoppih is online shop web application. This website is aim for the internal com
 
   Thirdparty libraries:
 
-  - react-query
-  - react-router-dom
-  - react-icons
-  - react-hook-forms
-  - react-toast
+  - react-query: For manage all data comes from api
+  - react-router-dom: Single page application
+  - react-icons: For icons
+  - react-hook-forms: For manage form state
+  - react-hot-toast: For notification
+  - react-recharts: For show graphic
+  - react-loading-skeleton: For loading
 
 - Supabase (Backend as a service)

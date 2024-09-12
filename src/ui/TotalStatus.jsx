@@ -11,7 +11,7 @@ function TotalStatus({ count, icon, type }) {
   return (
     <div className="flex cursor-pointer">
       <div
-        className={`flex items-center text-xs ${styles[type]} gap-2 rounded-lg p-2 sm:text-sm lg:text-2xl xl:w-52 xl:gap-5 xl:p-5`}
+        className={`flex min-w-32 items-center text-xs ${styles[type]} gap-2 rounded-lg p-2 sm:text-sm lg:text-2xl xl:w-52 xl:gap-5 xl:p-5`}
       >
         {icon}{' '}
         <div className="flex flex-col text-[8px] text-xs font-semibold">

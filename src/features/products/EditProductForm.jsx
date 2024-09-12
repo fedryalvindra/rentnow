@@ -2,13 +2,13 @@ import BackButton from '../../ui/BackButton.jsx';
 import InputLayout from '../../ui/InputLayout.jsx';
 import { useCategory } from '../categories/useCategory.js';
 
-import PageSpinner from '../../ui/PageSpinner.jsx';
-import { useProduct } from './useProduct.js';
-import Buttons from '../../ui/Buttons.jsx';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useUpdateProduct } from './useUpdateProduct.js';
 import Button from '../../ui/Button.jsx';
+import Buttons from '../../ui/Buttons.jsx';
+import PageSpinner from '../../ui/PageSpinner.jsx';
+import { useProduct } from './useProduct.js';
+import { useUpdateProduct } from './useUpdateProduct.js';
 
 function EditProductForm() {
   const { data: categories, isLoading: isLoadingCategories } = useCategory();
@@ -20,7 +20,7 @@ function EditProductForm() {
   const { errors } = formState;
   const navigate = useNavigate();
 
-  if (isLoadingCar || isLoadingCategories || isUpdatingProduct)
+  if (isUpdatingProduct || isLoadingCar || isLoadingCategories)
     return <PageSpinner />;
 
   const {
@@ -36,7 +36,6 @@ function EditProductForm() {
   } = car;
 
   const onSubmit = (data) => {
-    console.log(data);
     if (!data.carImageURL.length)
       updateProduct(
         {
@@ -76,6 +75,7 @@ function EditProductForm() {
                 <label className="font-semibold" htmlFor="carName">
                   Car Name
                 </label>
+
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   type="text"
@@ -95,6 +95,7 @@ function EditProductForm() {
                 <label className="font-semibold" htmlFor="plateNumber">
                   Plate Number
                 </label>
+
                 <input
                   className="w-8/12 border border-gray-200 p-1 focus:outline-none sm:rounded-md"
                   type="text"
@@ -203,8 +204,11 @@ function EditProductForm() {
                   <option className="bg-white text-gray-700" value="available">
                     Available
                   </option>
-                  
-                  <option className="bg-white text-gray-700" value="unavailable">
+
+                  <option
+                    className="bg-white text-gray-700"
+                    value="unavailable"
+                  >
                     Unavailable
                   </option>
 

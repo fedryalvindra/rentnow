@@ -7,6 +7,8 @@ import { useCategory } from '../categories/useCategory.js';
 import { useCreateProduct } from './useCreateProduct.js';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../ui/Button.jsx';
+import ProductFormLoading from '../../ui/ProductFormLoading.jsx';
+import Skeleton from 'react-loading-skeleton';
 
 function ProductForm() {
   const { register, handleSubmit, formState, getValues } = useForm();
@@ -16,7 +18,8 @@ function ProductForm() {
     useCreateProduct();
 
   const navigate = useNavigate();
-  if (isLoadingCategories || isCreatingProduct) return <PageSpinner />;
+
+  if (isCreatingProduct) return <PageSpinner />;
 
   const onSubmit = (car) => {
     createProduct(
@@ -76,24 +79,30 @@ function ProductForm() {
             <label className="font-semibold" htmlFor="categoryID">
               Category
             </label>
-            <select
-              className="w-20 rounded-sm border p-1 transition-all duration-200 focus:outline-none md:rounded-md md:p-2 lg:w-32"
-              id="categoryID"
-              disabled={isLoadingCategories || isCreatingProduct}
-              {...register('categoryID', {
-                required: 'This field is required',
-              })}
-            >
-              {categories?.map((category) => (
-                <option
-                  className="bg-white text-gray-700"
-                  value={category.id}
-                  key={category.id}
-                >
-                  {category.categoryName}
-                </option>
-              ))}
-            </select>
+            {isLoadingCategories ? (
+              <div className="h-5 w-20 lg:h-10 lg:w-32">
+                <Skeleton className="h-full w-full" />
+              </div>
+            ) : (
+              <select
+                className="w-20 rounded-sm border p-1 transition-all duration-200 focus:outline-none md:rounded-md md:p-2 lg:w-32"
+                id="categoryID"
+                disabled={isLoadingCategories || isCreatingProduct}
+                {...register('categoryID', {
+                  required: 'This field is required',
+                })}
+              >
+                {categories?.map((category) => (
+                  <option
+                    className="bg-white text-gray-700"
+                    value={category.id}
+                    key={category.id}
+                  >
+                    {category.categoryName}
+                  </option>
+                ))}
+              </select>
+            )}
           </InputLayout>
 
           <InputLayout error={errors?.carPrice?.message}>
