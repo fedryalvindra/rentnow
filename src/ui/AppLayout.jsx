@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar.jsx';
 import Header from './Header.jsx';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import PageSpinner from './PageSpinner.jsx';
 
 function AppLayout() {
   const [isSidebar, setIsSidebar] = useState(false);
@@ -27,7 +28,15 @@ function AppLayout() {
       >
         {isSidebar && <Sidebar />}
         <main className="h-full w-full overflow-y-scroll md:flex md:items-start md:justify-center">
-          <Outlet />
+          <Suspense
+            fallback={
+              <div className="flex h-dvh items-center justify-center">
+                <PageSpinner />
+              </div>
+            }
+          >
+            <Outlet />
+          </Suspense>
         </main>
       </div>
     </div>

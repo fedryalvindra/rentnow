@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -10,7 +10,6 @@ import Login from './pages/Login.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import AppLayout from './ui/AppLayout.jsx';
 import Modal from './ui/Modal.jsx';
-import PageSpinner from './ui/PageSpinner.jsx';
 import ProtectedRoute from './ui/ProtectedRoute.jsx';
 
 const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
@@ -55,13 +54,6 @@ function App() {
       <SkeletonTheme baseColor="#e7e7e7" highlightColor="#ffffff">
         <BrowserRouter>
           <Modal>
-            <Suspense
-              fallback={
-                <div className="flex h-dvh items-center justify-center">
-                  <PageSpinner />
-                </div>
-              }
-            >
               <Routes>
                 <Route
                   element={
@@ -103,7 +95,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<PageNotFound />} />
               </Routes>
-            </Suspense>
+           
 
             <Modal.Window>
               <Modal.Body>
